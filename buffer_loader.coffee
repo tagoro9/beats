@@ -1,4 +1,4 @@
-class BufferLoader
+class @BufferLoader
   constructor: (@context, @urlList, @onload, @bufferList = [], @loadCount = 0) ->
   loadBuffer: (url,index) ->
     request = new XMLHttpRequest()
