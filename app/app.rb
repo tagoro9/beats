@@ -46,6 +46,10 @@ class Beats < Padrino::Application
   #   end
   #
 
+  get '/' do
+    render 'index'
+  end
+
   ##
   # You can manage errors like:
   #
