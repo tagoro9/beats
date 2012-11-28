@@ -51,6 +51,10 @@ class Beats < Padrino::Application
     render 'index'
   end
 
+
+  get '/login' do
+    render 'login'
+  end
   ##
   # You can manage errors like:
   #
