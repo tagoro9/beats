@@ -17,8 +17,9 @@ class @Beats extends Backbone.Collection
 #Track model
 class @Track extends Backbone.Model
 	defaults: () ->
-		return {beats: new Beats(), beats_number: 16, sound_id: "soy un id"}
-	initialize: () ->
+		return {beats: new Beats(), beats_number: 16, sound_id: 1}
+	initialize: (options) ->
+		console.log options
 		_(@get("beats_number")).times () =>
 			@get("beats").add(new Beat())	
 	getBeatsStatus: () ->
@@ -75,6 +76,7 @@ class @PatternView extends Backbone.View
 		"click #play" : "playPattern"
 		"click #stop": "stopPattern"
 	initialize: () ->
+		@trackCount = 0
 		@context = new webkitAudioContext()
 		@collection.bind 'add', @renderAdded
 	render: () =>
@@ -82,21 +84,25 @@ class @PatternView extends Backbone.View
 	playPattern: () =>
 		console.log "Drop the beat!"
 		#Get all tracks sound ids
-		@urls = ["http://localhost:3000/samples/cymbal-hihat-open-stick-1.wav"]
+		@urls = ["http://localhost:3000/samples/cymbal-hihat-open-stick-1.wav"
+			"http://localhost:3000/samples/drum-bass-lo-1.wav"
+			"http://localhost:3000/samples/drum-snare-rim.wav"
+		]
 		@bl = new BufferLoader(@context,@urls,@finishedLoading)
 		@bl.load()
 	finishedLoading: (bufferList) =>
-		beats_array = []
+		beats_array = {}
 		@collection.each (track) =>
-			#console.log track.get 'sound_id'
-			beats_array.push track.getBeatsStatus()	
+			sound_id = track.get "sound_id"
+			beats_array[sound_id] = track.getBeatsStatus()	
 		startTime = @context.currentTime + 0.100
 		tempo = 120
-		beatLength = 60 / tempo
+		beatLength = 60 / tempo / 4
 		for i in [0...16]
 			time = startTime  + i * beatLength
-			for beat_array in beats_array
-				@playSound(bufferList[0],time) if beat_array[i] is on
+			for id, beat_array of beats_array
+				console.log "ID: #{id}"
+				@playSound(bufferList[id],time) if beat_array[i] is on
 	playSound: (buffer, time) ->
 		source = @context.createBufferSource()
 		source.buffer = buffer
@@ -107,7 +113,7 @@ class @PatternView extends Backbone.View
 	stopPattern: () =>
 		console.log "Stop that!"
 	addTrack: () =>
-		@collection.add new Track()
+		@collection.add new Track({sound_id: @trackCount++})
 	renderAdded: (track) =>
 		$(@el).find('.tracks').append $(new TrackView(model: track).render().el)
 
