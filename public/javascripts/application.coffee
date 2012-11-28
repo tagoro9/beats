@@ -82,11 +82,28 @@ class @PatternView extends Backbone.View
 	playPattern: () =>
 		console.log "Drop the beat!"
 		#Get all tracks sound ids
-		@collection.each (track) ->
+		@urls = ["http://localhost:3000/samples/cymbal-hihat-open-stick-1.wav"]
+		@bl = new BufferLoader(@context,@urls,@finishedLoading)
+		@bl.load()
+	finishedLoading: (bufferList) =>
+		console.log "Buffer finished loading"
+		source = @context.createBufferSource()
+		console.log "Source created"
+		source.buffer = bufferList[0]
+		console.log "Buffer assigned"
+		source.connect @context.destination		
+		beats_array = []
+		@collection.each (track) =>
 			#console.log track.get 'sound_id'
-			console.log track.getBeatsStatus()
-		@urls = ["https://dl.dropbox.com/u/28658513/cymbal-hihat-open-stick-1.wav"]
-		#@bl = new BufferLoader
+			beats_array = track.getBeatsStatus()	
+		startTime = @context.currentTime + 0.100
+		tempo = 80
+		eightNoteTime = 60 / tempo / 2
+		time = startTime  * 8 * eightNoteTime
+		source.noteOn 0.5
+		source.noteOn 2.3
+
+		source.noteOn 0
 	stopPattern: () =>
 		console.log "Stop that!"
 	addTrack: () =>

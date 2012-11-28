@@ -1,5 +1,5 @@
-class BufferLoader
-  constructor: (@context, @urlList, @callback, @bufferList = [], @loadCount = 0) ->
+class @BufferLoader
+  constructor: (@context, @urlList, @onLoad, @bufferList = [], @loadCount = 0) ->
   loadBuffer: (url,index) ->
     request = new XMLHttpRequest()
     request.open "GET", url, true
@@ -20,5 +20,6 @@ class BufferLoader
       alert 'BufferLoader: XHR error'
     request.send()
   load: () ->
-    @urlList.forEach(url,index) ->
-      @loadBuffer url,index
+    i = 0
+    for url in @urlList
+      @loadBuffer(url,i++)
