@@ -93,6 +93,7 @@ class @PatternView extends Backbone.View
 		@bl = new BufferLoader(@context,@urls,@finishedLoading)
 		@bl.load()
 	setMarker: (i,time) ->
+		console.log "Set Marker #{i} tiempo: #{time}"
 		setTimeout((->
 			$("#tempo-#{i}").addClass "tempo"
 			if i == 1
@@ -106,15 +107,14 @@ class @PatternView extends Backbone.View
 		@collection.each (track) =>
 			sound_id = track.get "sound_id"
 			beats_array[sound_id] = track.getBeatsStatus()	
-		startTime = @context.currentTime + 0.100
+		startTime = @context.currentTime + 0.200
 		tempo = 90
 		beatLength = 60 / tempo / 4
 		for i in [0...16]
 			time = startTime  + i * beatLength
+			@setMarker i+1,time			
 			for id, beat_array of beats_array
-				console.log "ID: #{id}"
 				@playSound(bufferList[id],time) if beat_array[i] is on && @playing is on
-			@setMarker i+1,time
 		setTimeout((=>
 			@finishedLoading bufferList
 		), beatLength*16*1000) if @playing is on
