@@ -1,3 +1,4 @@
+#######Modelos#############
 #Beat model
 class @Beat extends Backbone.Model
 	defaults:
@@ -23,6 +24,8 @@ class @Track extends Backbone.Model
 #Tracks collection aka Pattern
 class @Pattern extends Backbone.Collection
 	model: Track
+
+#########VISTAS################
 
 #BeatView
 class @BeatView extends Backbone.View
