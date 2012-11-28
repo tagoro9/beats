@@ -52,6 +52,14 @@
 	border:solid;
 }
 
+#tempo {
+	margin-left: 70px;
+}
+
+.Circulo.tempo {
+	background: #00F;
+}
+
 .Circulo.true {
 	background: #F00;
 }

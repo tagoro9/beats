@@ -14,6 +14,24 @@ Templates.track_view = """
 
 Templates.pattern_view = """
 <div class="tracks"></div>
+<div id="tempo">
+	<div id="tempo-1" class="Circulo "></div>
+	<div id="tempo-2" class="Circulo "></div>
+	<div id="tempo-3" class="Circulo "></div>
+	<div id="tempo-4" class="Circulo "></div>
+	<div id="tempo-5" class="Circulo "></div>
+	<div id="tempo-6" class="Circulo "></div>
+	<div id="tempo-7" class="Circulo "></div>
+	<div id="tempo-8" class="Circulo "></div>
+	<div id="tempo-9" class="Circulo "></div>
+	<div id="tempo-10" class="Circulo "></div>
+	<div id="tempo-11" class="Circulo "></div>
+	<div id="tempo-12" class="Circulo "></div>
+	<div id="tempo-13" class="Circulo "></div>
+	<div id="tempo-14" class="Circulo "></div>
+	<div id="tempo-15" class="Circulo "></div>
+	<div id="tempo-16" class="Circulo "></div>
+</div>
 <div class="span12 personalSpan12 borde beats-controls">
 	<div class="GrupoCuadroM">
 		<div class="CuadroM">

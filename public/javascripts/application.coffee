@@ -82,27 +82,43 @@ class @PatternView extends Backbone.View
 	render: () =>
 		$(@el).append @template
 	playPattern: () =>
+		return false if @playing is on
+		@playing = true
 		console.log "Drop the beat!"
 		#Get all tracks sound ids
-		@urls = ["http://localhost:3000/samples/cymbal-hihat-open-stick-1.wav"
-			"http://localhost:3000/samples/drum-bass-lo-1.wav"
-			"http://localhost:3000/samples/drum-snare-rim.wav"
+		@urls = ["http://localhost:3000/samples/kick.wav"
+			"http://localhost:3000/samples/snare.wav"
+			"http://localhost:3000/samples/hihat.wav"
 		]
 		@bl = new BufferLoader(@context,@urls,@finishedLoading)
 		@bl.load()
+	setMarker: (i,time) ->
+		setTimeout((->
+			$("#tempo-#{i}").addClass "tempo"
+			if i == 1
+				$("#tempo-#{16}").removeClass "tempo"
+			else
+				$("#tempo-#{i-1}").removeClass "tempo"
+		), time*1000)		
+
 	finishedLoading: (bufferList) =>
 		beats_array = {}
 		@collection.each (track) =>
 			sound_id = track.get "sound_id"
 			beats_array[sound_id] = track.getBeatsStatus()	
 		startTime = @context.currentTime + 0.100
-		tempo = 120
+		tempo = 90
 		beatLength = 60 / tempo / 4
 		for i in [0...16]
 			time = startTime  + i * beatLength
 			for id, beat_array of beats_array
 				console.log "ID: #{id}"
-				@playSound(bufferList[id],time) if beat_array[i] is on
+				@playSound(bufferList[id],time) if beat_array[i] is on && @playing is on
+			@setMarker i+1,time
+		setTimeout((=>
+			@finishedLoading bufferList
+		), beatLength*16*1000) if @playing is on
+
 	playSound: (buffer, time) ->
 		source = @context.createBufferSource()
 		source.buffer = buffer
@@ -111,6 +127,7 @@ class @PatternView extends Backbone.View
 
 		source.noteOn 0
 	stopPattern: () =>
+		@playing = false
 		console.log "Stop that!"
 	addTrack: () =>
 		@collection.add new Track({sound_id: @trackCount++})
