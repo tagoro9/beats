@@ -17,11 +17,11 @@ Templates.pattern_view = """
 <div class="span12 personalSpan12 borde beats-controls">
 	<div class="GrupoCuadroM">
 		<div class="CuadroM">
-			<a class="icon-stop" href="#"></a>
+			<a id="stop" class="icon-stop" href="#"></a>
 			<h5>STOP</h5>
 		</div>
 		<div class="CuadroM">
-			<a class="icon-pause" href="#"></a>
+			<a id="play" class="icon-pause" href="#"></a>
 			<h5>PAUSE</h5>
 		</div>
 		<div class="CuadroM">

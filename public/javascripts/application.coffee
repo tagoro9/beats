@@ -17,10 +17,16 @@ class @Beats extends Backbone.Collection
 #Track model
 class @Track extends Backbone.Model
 	defaults: () ->
-		return {beats: new Beats(), beats_number: 16}
+		return {beats: new Beats(), beats_number: 16, sound_id: "soy un id"}
 	initialize: () ->
 		_(@get("beats_number")).times () =>
 			@get("beats").add(new Beat())	
+	getBeatsStatus: () ->
+		beats_array = []
+		@get("beats").each (beat) =>
+			beats_array.push beat.get("status")
+		return beats_array
+
 
 #Tracks collection aka Pattern
 class @Pattern extends Backbone.Collection
@@ -66,10 +72,23 @@ class @PatternView extends Backbone.View
 	template: _.template Templates.pattern_view
 	events:
 		"click .add-track": "addTrack"
+		"click #play" : "playPattern"
+		"click #stop": "stopPattern"
 	initialize: () ->
+		@context = new webkitAudioContext()
 		@collection.bind 'add', @renderAdded
 	render: () =>
 		$(@el).append @template
+	playPattern: () =>
+		console.log "Drop the beat!"
+		#Get all tracks sound ids
+		@collection.each (track) ->
+			#console.log track.get 'sound_id'
+			console.log track.getBeatsStatus()
+		@urls = ["https://dl.dropbox.com/u/28658513/cymbal-hihat-open-stick-1.wav"]
+		#@bl = new BufferLoader
+	stopPattern: () =>
+		console.log "Stop that!"
 	addTrack: () =>
 		@collection.add new Track()
 	renderAdded: (track) =>
