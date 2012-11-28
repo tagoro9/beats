@@ -86,22 +86,22 @@ class @PatternView extends Backbone.View
 		@bl = new BufferLoader(@context,@urls,@finishedLoading)
 		@bl.load()
 	finishedLoading: (bufferList) =>
-		console.log "Buffer finished loading"
-		source = @context.createBufferSource()
-		console.log "Source created"
-		source.buffer = bufferList[0]
-		console.log "Buffer assigned"
-		source.connect @context.destination		
 		beats_array = []
 		@collection.each (track) =>
 			#console.log track.get 'sound_id'
-			beats_array = track.getBeatsStatus()	
+			beats_array.push track.getBeatsStatus()	
 		startTime = @context.currentTime + 0.100
-		tempo = 80
-		eightNoteTime = 60 / tempo / 2
-		time = startTime  * 8 * eightNoteTime
-		source.noteOn 0.5
-		source.noteOn 2.3
+		tempo = 120
+		beatLength = 60 / tempo
+		for i in [0...16]
+			time = startTime  + i * beatLength
+			for beat_array in beats_array
+				@playSound(bufferList[0],time) if beat_array[i] is on
+	playSound: (buffer, time) ->
+		source = @context.createBufferSource()
+		source.buffer = buffer
+		source.connect @context.destination	
+		source.noteOn time
 
 		source.noteOn 0
 	stopPattern: () =>
