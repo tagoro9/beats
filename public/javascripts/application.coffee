@@ -1,4 +1,5 @@
 #######Modelos#############
+
 #Beat model
 class @Beat extends Backbone.Model
 	defaults:
