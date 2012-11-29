@@ -112,7 +112,7 @@ class @PatternView extends Backbone.View
 		beatLength = 60 / tempo / 4
 		for i in [0...16]
 			time = startTime  + i * beatLength
-			@setMarker i+1,time			
+			@setMarker i+1,time - @context.currentTime		
 			for id, beat_array of beats_array
 				@playSound(bufferList[id],time) if beat_array[i] is on && @playing is on
 		setTimeout((=>

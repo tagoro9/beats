@@ -53,18 +53,10 @@
 }
 
 #tempo {
-	margin-left: 70px;
+	margin-left: 0px;
 }
 
-.Circulo.tempo {
-	background: #00F;
-}
-
-.Circulo.true {
-	background: #F00;
-}
-
-.Circulo1{
+#tempo .Circulo {
 	float:left;
 	height: 12px;
 	width: 32px;
@@ -76,4 +68,12 @@
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	border:solid;
+}
+
+.Circulo.tempo {
+	background: #0F0;
+}
+
+.Circulo.true {
+	background: #F00;
 }
