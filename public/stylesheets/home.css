@@ -1,0 +1,72 @@
+.containerUno{
+	float:left;
+	background-color: #fff;
+	width: 180px;
+	margin: 10px; 
+	min-height: 415px;
+	padding: 18px;
+}
+
+.containerDos{
+	float:left;
+	background-color: #fff;
+	width: 422px;
+	margin: 10px;
+	min-height: 400px;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-bottom: 18px;
+}
+
+.containerTres{
+	float:left;
+	background-color: #fff;
+	width: 220px;
+	margin: 10px;
+	min-height: 172px;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-bottom: 18px;
+}
+
+.Alto{
+	min-height: 392px;
+}
+
+.Alineado{
+	text-align: center;
+}
+
+.AnchoItem{
+	width: 359px;
+}
+
+.AnchoItem1{
+	width: 172px;
+}
+
+.containerFoto{
+	float:left;
+	width: 176px;
+	height: 176px;
+	background-image: url(/img/User.png	);
+	background-size: 176px 176px;
+}
+
+.containerMiniFoto{
+	float:left;
+	width: 50px;
+	height: 50px;
+	background-image: url(/img/MusicIcon.png);
+	background-size: 50px 50px;
+	margin: 5px;
+}
+
+.containerMiniFoto1{
+	float:left;
+	width: 50px;
+	height: 50px;
+	background-image: url(/img/MusicIcon1.png);
+	background-size: 50px 50px;
+	margin: 5px;
+}
