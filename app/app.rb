@@ -7,7 +7,8 @@ class Beats < Padrino::Application
   register Padrino::Helpers
 
   enable :sessions
-  #reload :enable
+  enable :reload
+  set :login_page , "/login"
 
   ##
   # Caching support
@@ -57,6 +58,7 @@ class Beats < Padrino::Application
   get '/login' do
     render 'login'
   end
+
   ##
   # You can manage errors like:
   #
