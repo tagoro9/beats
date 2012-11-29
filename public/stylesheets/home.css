@@ -129,7 +129,8 @@ audio{
 }
 
 .btn.btn-facebook{
-	background-color:#3b5998;
+	/*background-color:#3b5998;*/
+	background-color:#0c4da2;
 	border-color:#3b5998;
 }
 .btn.btn-twitter{
