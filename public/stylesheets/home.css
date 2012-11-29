@@ -1,9 +1,9 @@
 .containerUno{
 	float:left;
-	background-color: #fff;
+	background-color: #F8F8FF;
 	width: 180px;
 	margin: 10px; 
-	min-height: 415px;
+	min-height: 405px;
 	padding: 18px;
 }
 
@@ -23,7 +23,7 @@
 	background-color: #fff;
 	width: 220px;
 	margin: 10px;
-	min-height: 172px;
+	min-height: 400px;
 	padding-left: 18px;
 	padding-right: 18px;
 	padding-bottom: 18px;
@@ -41,8 +41,20 @@
 	width: 359px;
 }
 
+.AnchoItem:hover{
+	width: 359px;
+	background-color: #F8F8FF;
+	border:none;
+}
+
 .AnchoItem1{
 	width: 172px;
+}
+
+.AnchoItem1:hover{
+	width: 172px;
+	background-color: #F8F8FF;
+	border:none;
 }
 
 .containerFoto{
@@ -69,4 +81,38 @@
 	background-image: url(/img/MusicIcon1.png);
 	background-size: 50px 50px;
 	margin: 5px;
+}
+
+#listview{
+	overflow:scroll;height:390px;width:422px;
+	overflow-x:hidden;
+}
+
+#listview::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#listview::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+#listview::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+#listview1{
+	overflow:scroll;height:390px;width:220px;
+	overflow-x:hidden;
+}
+
+#listview1::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#listview1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+#listview1::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
