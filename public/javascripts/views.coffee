@@ -13,7 +13,7 @@ class @BeatView extends Backbone.View
 #TrackView
 class @TrackView extends Backbone.View
 	tagName: 'div'
-	className: 'row'
+	className: 'row' 
 	template: _.template Templates.track_view
 	events:
 		"mousedown .volume": "changeVolume"
