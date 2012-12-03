@@ -54,6 +54,8 @@ class @Player
 	    gainNode.connect @context.destination
 	    voice.noteOn(noteTime)	if mainGain > 0
 
+@context = new webkitAudioContext()
+console.log context
 
 #Pattern
 class @Pattern extends Backbone.Model
@@ -66,11 +68,13 @@ class @Pattern extends Backbone.Model
 		compressor: null
 		masterGainNode: null
 		effectLevelNode: null
-		tempo: 90
+		tempo: 92
 		beats_number: 16
 	initialize: () ->
 		@set "bufferLoader", new BufferLoader(@get("context"))
 		@set "player", new Player(@get("context"))
+		@get("context").createBufferSource()
+		@lastDrawTime = -1
 	addTrack: () ->
 		@get("bufferLoader").loadUrl($('#track-url').val(), (buffer) =>
 			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: $('#track-url').find(':selected').text()})
@@ -84,3 +88,24 @@ class @Pattern extends Backbone.Model
 	playTrack: (cid) ->
 		track = @get('tracks').getByCid cid
 		@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, 0);	
+	advanceNote: () ->
+		secondsPerBeat = 60.0 / @get("tempo") / 4
+		@beatIndex++
+		if @beatIndex == @get("beats_number")
+			@beatIndex = 0
+		@noteTime += secondsPerBeat
+	play: () ->
+		currentTime = @get("context").currentTime
+		currentTime -= @startTime
+		while (@noteTime < currentTime + 0.200)
+			if @noteTime != @lastDrawTime
+				@lastDrawTime = @noteTime
+				@.trigger 'updateMarker', (@beatIndex + 15) % 16
+			@advanceNote()
+		@timer = setTimeout((=>
+			@play()
+		), 0)
+	stop: () ->
+		clearTimeout @timer
+
+

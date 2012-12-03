@@ -50,6 +50,7 @@ class @PatternView extends Backbone.View
 		@model.get("tracks").bind 'remove', @renderDel
 		@model.get("tracks").bind 'reset', @renderClear
 		@model.get("tracks").bind 'playMe', @play
+		@model.bind 'updateMarker', @drawMarker
 		@render()
 	play: (cid) =>
 		@model.playTrack(cid)	
@@ -62,9 +63,18 @@ class @PatternView extends Backbone.View
 	delTrack: () =>
 		@model.delTrack() if @model.tracksNumber() > 0
 	handlePlay: () ->
-		console.log "Drop the beat!"
+		return false if @playing is on
+		@playing = true
+		@model.noteTime = 0.0
+		@model.startTime = @model.get("context").currentTime + 0.005
+		@model.beatIndex = 0
+		@model.play()
 	handleStop: () ->
-		console.log "Stop that!"
+		@playing = false
+		@model.stop()
+		@clearMarkers()
+	clearMarkers: () ->
+		$(@el).find('#tempo').find('.Circulo').removeClass "tempo"
 	drawMarker: (index) ->
 		lastIndex = (index + 15) % 16
 		$("#tempo-#{index}").addClass "tempo"
@@ -76,54 +86,3 @@ class @PatternView extends Backbone.View
 		$(target).slideUp('slow',() => $(target).remove())
 	renderAdded: (track) =>
 		$(new TrackView(model: track).render().el).hide().appendTo($(@el).find('.tracks')).slideDown('slow')
-
-###
-	playPattern: () =>
-		return false if @playing is on
-		@playing = true
-		console.log "Drop the beat!"
-		#Get all tracks sound ids
-		@urls = ["http://localhost:3000/samples/kick.wav"
-			"http://localhost:3000/samples/snare.wav"
-			"http://localhost:3000/samples/hihat.wav"
-		]
-		@bl = new BufferLoader(@context,@urls,@finishedLoading)
-		@bl.load()
-	setMarker: (i,time) ->
-		console.log "Set Marker #{i} tiempo: #{time}"
-		setTimeout((->
-			$("#tempo-#{i}").addClass "tempo"
-			if i == 1
-				$("#tempo-#{16}").removeClass "tempo"
-			else
-				$("#tempo-#{i-1}").removeClass "tempo"
-		), time*1000)		
-
-	finishedLoading: (bufferList) =>
-		beats_array = {}
-		@collection.each (track) =>
-			sound_id = track.get "sound_id"
-			beats_array[sound_id] = track.getBeatsStatus()	
-		startTime = @context.currentTime + 0.200
-		tempo = 90
-		beatLength = 60 / tempo / 4
-		for i in [0...16]
-			time = startTime  + i * beatLength
-			@setMarker i+1,time - @context.currentTime		
-			for id, beat_array of beats_array
-				@playSound(bufferList[id],time) if beat_array[i] is on && @playing is on
-		setTimeout((=>
-			@finishedLoading bufferList
-		), beatLength*16*1000) if @playing is on
-
-	playSound: (buffer, time) ->
-		source = @context.createBufferSource()
-		source.buffer = buffer
-		source.connect @context.destination	
-		source.noteOn time
-
-		source.noteOn 0
-	stopPattern: () =>
-		@playing = false
-		console.log "Stop that!"
-###
