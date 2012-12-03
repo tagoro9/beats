@@ -5,7 +5,8 @@ Templates.beat_view = """
 Templates.track_view = """
 <div class="span12 personalSpan12 track-content">	
 	<div class="CuadroI">
-		<h4>Instru.1</h4>
+		<h4><%= name %></h4>
+		<div class="volume"><span>100</span></div>
 		<a class="icon-volume-mute volume" data-volume="down" href="#"></a>
 		<a class="icon-volume-2 volume" data-volume="up" href="#"></a>
 	</div>
@@ -18,7 +19,13 @@ Templates.pattern_view = """
 	<div class="CuadroI">
 		<a class="icon-plus add-track" href="#"></a>
 		<a class="icon-minus del-track" href="#"></a>
+		<select id="track-url" style="width: 80px; margin-top: 20px;">
+			<option value="http://localhost:3000/samples/kick.wav">Kick</option>
+			<option value="http://localhost:3000/samples/snare.wav">Snare</option>
+			<option value="http://localhost:3000/samples/hihat.wav">Hihat</option>
+		</select>
 	</div>
+	<div id="tempo-0" class="Circulo "></div>
 	<div id="tempo-1" class="Circulo "></div>
 	<div id="tempo-2" class="Circulo "></div>
 	<div id="tempo-3" class="Circulo "></div>
@@ -34,7 +41,6 @@ Templates.pattern_view = """
 	<div id="tempo-13" class="Circulo "></div>
 	<div id="tempo-14" class="Circulo "></div>
 	<div id="tempo-15" class="Circulo "></div>
-	<div id="tempo-16" class="Circulo "></div>
 </div>
 <div class="span12 personalSpan12 borde beats-controls">
 	<div class="GrupoCuadroM">

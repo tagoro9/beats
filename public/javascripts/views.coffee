@@ -16,19 +16,24 @@ class @TrackView extends Backbone.View
 	className: 'row'
 	template: _.template Templates.track_view
 	events:
-		"click .volume": "changeVolume"
+		"mousedown .volume": "changeVolume"
+		"mouseup .volume": "stopVolumeChange"
 	initialize: () ->
 		@beatsViews = []
+		@model.get("beats").on 'playMe', () => @model.trigger('playMe',@model.cid)
 		@model.get("beats").forEach (beat) =>
 			@beatsViews.push new BeatView(model: beat)
 	render: () =>
-		$(@el).html @template
+		$(@el).html @template {name: @model.get("name")}
 		@beatsViews.forEach (beat) =>
 			$(@el).find('.track-content').append beat.render()
 		return @
-	changeVolume: (e) ->
-		volume = $(e.target).data 'volume'
-		console.log "Turning #{volume} the volume..."
+	stopVolumeChange: (e) ->
+		clearTimeout @timer
+	changeVolume: (e) =>
+		@model.changeVolume $(e.target).data('volume')
+		$(@el).find('.volume').find('span').html @model.get("volume")
+		@timer = setTimeout((() => @changeVolume(e)), 25)
 
 #PatternView aka Beats
 class @PatternView extends Backbone.View
@@ -44,7 +49,10 @@ class @PatternView extends Backbone.View
 		@model.get("tracks").bind 'add', @renderAdded
 		@model.get("tracks").bind 'remove', @renderDel
 		@model.get("tracks").bind 'reset', @renderClear
+		@model.get("tracks").bind 'playMe', @play
 		@render()
+	play: (cid) =>
+		@model.playTrack(cid)	
 	render: () =>
 		$(@el).append @template
 	clearTracks: () ->
@@ -57,6 +65,10 @@ class @PatternView extends Backbone.View
 		console.log "Drop the beat!"
 	handleStop: () ->
 		console.log "Stop that!"
+	drawMarker: (index) ->
+		lastIndex = (index + 15) % 16
+		$("#tempo-#{index}").addClass "tempo"
+		$("#tempo-#{lastIndex}").removeClass "tempo"
 	renderClear: () =>
 		$(@el).find('.tracks').empty()
 	renderDel: (track) =>
