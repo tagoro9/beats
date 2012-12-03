@@ -25,11 +25,6 @@ class @Track extends Backbone.Model
 	initialize: (options) ->
 		_(@get("beats_number")).times () =>
 			@get("beats").add(new Beat())	
-	getBeatsStatus: () ->
-		beats_array = []
-		@get("beats").each (beat) =>
-			beats_array.push beat.get("status")
-		return beats_array
 	changeVolume: (op) ->
 		volume = @get("volume")
 		switch op
@@ -53,9 +48,6 @@ class @Player
 	    voice.connect gainNode
 	    gainNode.connect @context.destination
 	    voice.noteOn(noteTime)	if mainGain > 0
-
-@context = new webkitAudioContext()
-console.log context
 
 #Pattern
 class @Pattern extends Backbone.Model
@@ -98,6 +90,10 @@ class @Pattern extends Backbone.Model
 		currentTime = @get("context").currentTime
 		currentTime -= @startTime
 		while (@noteTime < currentTime + 0.200)
+			contextPlayTime = @noteTime + @startTime;			
+			@get("tracks").each (track) =>
+				if track.get("beats").at(@beatIndex).get("status") is on
+					@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, contextPlayTime);	
 			if @noteTime != @lastDrawTime
 				@lastDrawTime = @noteTime
 				@.trigger 'updateMarker', (@beatIndex + 15) % 16
