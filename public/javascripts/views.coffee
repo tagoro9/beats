@@ -60,10 +60,10 @@ class @PatternView extends Backbone.View
 	renderClear: () =>
 		$(@el).find('.tracks').empty()
 	renderDel: (track) =>
-		$(@el).find('.tracks').children().last().remove()
+		target = $(@el).find('.tracks').children().last()
+		$(target).slideUp('slow',() => $(target).remove())
 	renderAdded: (track) =>
-		$(@el).find('.tracks').append $(new TrackView(model: track).render().el)
-
+		$(new TrackView(model: track).render().el).hide().appendTo($(@el).find('.tracks')).slideDown('slow')
 
 ###
 	playPattern: () =>
