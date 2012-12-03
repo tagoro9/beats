@@ -17,7 +17,7 @@ Templates.pattern_view = """
 <div id="tempo" class="span12 personalSpan12">
 	<div class="CuadroI">
 		<a class="icon-plus add-track" href="#"></a>
-		<a class="icon-minus" href="#"></a>
+		<a class="icon-minus del-track" href="#"></a>
 	</div>
 	<div id="tempo-1" class="Circulo "></div>
 	<div id="tempo-2" class="Circulo "></div>
@@ -43,13 +43,9 @@ Templates.pattern_view = """
 			<h5>STOP</h5>
 		</div>
 		<div class="CuadroM">
-			<a id="play" class="icon-play" href="#"></a>
+			<a id="play" class="icon-play-alt" href="#"></a>
 			<h5>PAUSE</h5>
 		</div>
-		<!--
-		<div class="CuadroM">
-			<a class="add-track">Add track</a>
-		</div>-->
 	</div>
 	<div class="GrupoCuadroM">
 		<div class="CuadroM">
@@ -61,7 +57,7 @@ Templates.pattern_view = """
 			<h5>LOAD</h5>
 		</div>
 		<div class="CuadroM">
-			<a class="icon-remove" href="#"></a>
+			<a id="clear" class="icon-remove" href="#"></a>
 			<h5>CLEAR</h5>
 		</div>
 	</div>
