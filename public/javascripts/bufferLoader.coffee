@@ -1,6 +1,6 @@
-class BufferLoader
-  constructor: (@context, @urlList, @callback, @bufferList = [], @loadCount = 0) ->
-  loadBuffer: (url,index) ->
+class @BufferLoader
+  constructor: (@context) ->
+  loadUrl: (url,callback) ->
     request = new XMLHttpRequest()
     request.open "GET", url, true
     request.responseType = "arraybuffer"
@@ -11,14 +11,10 @@ class BufferLoader
           if !buffer
             alert "error decoding file data: #{url}"
             return
-          @bufferList[index] = buffer
-          @onLoad(@bufferList) if ++@loadCount == @urlList.length
+          callback(buffer)
         , (error) =>
           console.error 'decodeAudioData error', error
       )
     request.onerror = () ->
-      alert 'BufferLoader: XHR error'
+      console.log 'BufferLoader: XHR error'
     request.send()
-  load: () ->
-    @urlList.forEach(url,index) ->
-      @loadBuffer url,index
