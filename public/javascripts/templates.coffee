@@ -7,13 +7,13 @@ Templates.track_view = """
 	<div class="CuadroI">
 		<h4 style="text-align: center"><%= name %></h4>
 		<div class= "elementoCuadro"> <a class="icon-volume-mute volume" data-volume="down" href="#"></a></div>
-		<div class="volume elementoCuadro"><input type="text" value="100"></div>
+		<div class="volume elementoCuadro"><input type="text" class="dataInput" value="100"></div>
 		<div class= "elementoCuadro"><a class="icon-volume-2 volume" data-volume="up" href="#"></a></div>
 
 		<div class="mutesolo">Mute</div>
 		<div class="mutesolo">Solo</div>
 	</div>
-	<!--<div class=divisorLine></div>-->
+	<div class="beats"></div>
 </div>
 """
 

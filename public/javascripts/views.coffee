@@ -26,13 +26,13 @@ class @TrackView extends Backbone.View
 	render: () =>
 		$(@el).html @template {name: @model.get("name")}
 		@beatsViews.forEach (beat) =>
-			$(@el).find('.track-content').append beat.render()
+			$(@el).find('.track-content').find('.beats').append beat.render()
 		return @
 	stopVolumeChange: (e) ->
 		clearTimeout @timer
 	changeVolume: (e) =>
 		@model.changeVolume $(e.target).data('volume')
-		$(@el).find('.volume').find('span').html @model.get("volume")
+		$(@el).find('.volume').find('input').val @model.get("volume")
 		@timer = setTimeout((() => @changeVolume(e)), 25)
 
 #PatternView aka Beats
