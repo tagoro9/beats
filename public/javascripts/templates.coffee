@@ -43,18 +43,18 @@ Templates.pattern_view = """
 </div>
 <div class="span10 personalSpan12 panelcontrol">
 	<div id="TempoControl">
+		<p>TEMPO</p>
+		<a class="icon-minus down-tempo" href="#"></a>
 		<div class="volume"><input type="text" value="100"></div>
+		<a class="icon-plus up-tempo" href="#"></a>
 	</div>
 	<div id="Sample">
-		<select id="track-url" style="width: 80px; margin-top: 20px;">
-			<option value="http://localhost:3000/samples/kick.wav">Kick</option>
-			<option value="http://localhost:3000/samples/snare.wav">Snare</option>
-			<option value="http://localhost:3000/samples/hihat.wav">Hihat</options>
+		<select id="track-url">
+			<option value="/samples/kick.wav">Kick</option>
+			<option value="/samples/snare.wav">Snare</option>
+			<option value="/samples/hihat.wav">Hihat</options>
 		</select>
 	</div>
-	<div>
-
-	</div>	
 
 </div>
 <div class="span10 personalSpan12 panelcontrol">

@@ -6,6 +6,7 @@ class Beats < Padrino::Application
   register Padrino::Helpers
 
   enable :sessions
+  #reload :enable
 
   ##
   # Caching support
