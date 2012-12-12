@@ -13,6 +13,8 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.4)
     coffee-script (2.2.0)
       coffee-script-source
@@ -31,7 +33,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    multi_json (1.3.7)
+    multi_json (1.5.0)
     padrino (0.10.7)
       padrino-admin (= 0.10.7)
       padrino-cache (= 0.10.7)
@@ -64,16 +66,16 @@ GEM
     rack-coffee (1.0.0)
       coffee-script
       rack
-    rack-protection (1.2.0)
+    rack-protection (1.3.2)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rake (10.0.1)
+    rake (10.0.2)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
-    rspec-core (2.12.0)
+    rspec-core (2.12.1)
     rspec-expectations (2.12.0)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.12.0)
@@ -100,6 +102,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  bcrypt-ruby
   coffee-script
   haml
   padrino (= 0.10.7)
