@@ -1,10 +1,26 @@
-%header
-	#container.row
-		#container1.span5.borde
-			%image{:src => "/img/BeatsByDreCampusHeat.jpg"}
-		#container2.span5
-			%h1 Inicia sesion ya!
-			%h2 Elige tu cuenta favorita
-			#blockfoto
-				#foto1
-				#foto2
+.row-fluid#header
+  .logo.span7
+  .navbar
+    .navbar-inner
+      %a.brand BEATS
+      %ul.nav
+        %li.active
+          %a Home
+        %li
+          %a About
+        %li
+          %a Machetazo
+
+.row-fluid#company
+  .span12
+    %h1 //Beats
+    %p.centered
+      %a.btn.btn-large{:href => "#"} Start me app
+
+.row-fluid#login
+  .span12
+    %p.centered
+      %a.btn.btn-large#facebooklogin{:href => "#"} Log in with facebook
+      %a.btn.btn-large#twitterlogin{:href => "#"} Log in with twitter
+
+
