@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Beats < Padrino::Application
   register CoffeeInitializer
   use ActiveRecord::ConnectionAdapters::ConnectionManagement
