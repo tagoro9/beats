@@ -18,6 +18,7 @@ class @TrackView extends Backbone.View
 	events:
 		"mousedown .volume": "changeVolume"
 		"mouseup .volume": "stopVolumeChange"
+		"click .mutesolo": "handleMuteSolo"
 	initialize: () ->
 		@beatsViews = []
 		@model.get("beats").on 'playMe', () => @model.trigger('playMe',@model.cid)
@@ -30,6 +31,14 @@ class @TrackView extends Backbone.View
 		return @
 	stopVolumeChange: (e) ->
 		clearTimeout @timer
+	handleMuteSolo: (e) ->
+		$(e.target).toggleClass('active')
+		switch $(e.target).data "action"
+			when "mute"
+				@model.toggle "mute"
+			when "solo"
+				@model.toggle "solo"
+				@model.trigger('solo',@mdel.cid) if $(e.target).hasClass("active")
 	changeVolume: (e) =>
 		@model.changeVolume $(e.target).data('volume')
 		$(@el).find('.volume').find('input').val @model.get("volume")

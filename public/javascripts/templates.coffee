@@ -10,8 +10,8 @@ Templates.track_view = """
 		<div class="volume elementoCuadro"><input type="text" class="dataInput" value="100"></div>
 		<div class= "elementoCuadro"><a class="icon-volume-2 volume" data-volume="up" href="#"></a></div>
 
-		<div class="mutesolo">Mute</div>
-		<div class="mutesolo">Solo</div>
+		<div class="mutesolo" data-action="mute">Mute</div>
+		<div class="mutesolo" data-action="solo">Solo</div>
 	</div>
 	<div class="beats"></div>
 </div>

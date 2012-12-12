@@ -22,9 +22,16 @@ class @Track extends Backbone.Model
 		sound_id: 1
 		name: ""
 		buffer: null
+		solo: false
+		mute: false
 	initialize: (options) ->
 		_(@get("beats_number")).times () =>
-			@get("beats").add(new Beat())	
+			@get("beats").add(new Beat())
+	toggle: (attr) ->
+		if @get(attr)
+			@set attr,false
+		else
+			@set attr,true
 	changeVolume: (op) ->
 		volume = @get("volume")
 		switch op
@@ -93,7 +100,7 @@ class @Pattern extends Backbone.Model
 			contextPlayTime = @noteTime + @startTime;			
 			@get("tracks").each (track) =>
 				if track.get("beats").at(@beatIndex).get("status") is on
-					@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, contextPlayTime);	
+					@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, contextPlayTime) unless track.get("mute") is on
 			if @noteTime != @lastDrawTime
 				@lastDrawTime = @noteTime
 				@.trigger 'updateMarker', (@beatIndex + 15) % 16

@@ -58,6 +58,11 @@ body {
 	border: 1px solid #c3c3c3;
 	text-align: center;
 	margin-right: 1px;
+	cursor: pointer;
+}
+
+.mutesolo.active {
+	background: #F00;
 }
 
 .elementoCuadro{
