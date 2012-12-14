@@ -10,6 +10,13 @@ class Beats < Padrino::Application
   enable :reload
   set :login_page , "/login"
 
+=begin
+  use OmniAuth::Builder do
+    provider :twitter,  'consumer_key', 'consumer_secret'
+    provider :facebook, 'app_id', 'app_secret'
+  end
+=end
+
   ##
   # Caching support
   #

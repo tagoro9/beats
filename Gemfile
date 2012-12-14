@@ -15,7 +15,9 @@ gem 'haml'
 gem 'activerecord', :require => "active_record"
 gem 'sqlite3'
 gem 'bcrypt-ruby', :require => "bcrypt"
-gem 'omniauth'
+gem 'omniauth', :require => 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 
 # Test requirements
