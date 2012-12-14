@@ -14,7 +14,9 @@ gem 'coffee-script'
 gem 'haml'
 gem 'activerecord', :require => "active_record"
 gem 'sqlite3'
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', :require => "bcrypt"
+gem 'omniauth'
+
 
 # Test requirements
 gem 'rspec', :group => "test"
