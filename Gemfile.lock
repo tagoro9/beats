@@ -89,6 +89,8 @@ GEM
     padrino-mailer (0.10.7)
       mail (~> 2.3.0)
       padrino-core (= 0.10.7)
+    pg (0.14.1)
+    pg (0.14.1-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-coffee (1.0.0)
@@ -137,6 +139,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   padrino (= 0.10.7)
+  pg
   rack-coffee
   rack-test
   rake

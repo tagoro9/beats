@@ -20,9 +20,13 @@ ActiveRecord::Base.configurations[:development] = {
 }
 
 ActiveRecord::Base.configurations[:production] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'beats_production.db')
-
+	:adapter => "postgresql",
+	:encoding => "unicode",
+	:pool:	=> 5
+	:database => "d826t8tpgio4h9",
+	:username => "hmsouaxzckzjzx",
+	:password => "2AzDwewEnzRzfOjZDRmyVRHDs2",
+	:host =>  "ec2-54-243-201-156.compute-1.amazonaws.com"
 }
 
 ActiveRecord::Base.configurations[:test] = {
