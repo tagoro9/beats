@@ -54,6 +54,9 @@ class @PatternView extends Backbone.View
 		"click #clear": "clearTracks"
 		"click #play": "handlePlay"
 		"click #stop": "handleStop"
+		"mousedown .tempo": "changeTempo"
+		"mouseup .tempo": "stopTempoChange"
+		"change #TempoControl input": "setTempo"
 	initialize: () ->
 		@model.get("tracks").bind 'add', @renderAdded
 		@model.get("tracks").bind 'remove', @renderDel
@@ -82,8 +85,21 @@ class @PatternView extends Backbone.View
 		@playing = false
 		@model.stop()
 		@clearMarkers()
+	setTempo: (e) ->
+		val = parseInt $(e.target).val()
+		if val >= 40 && val <= 220
+			@model.set "tempo", val 
+		else
+			@model.set "tempo", 100
+			$(e.target).val "100"
 	clearMarkers: () ->
 		$(@el).find('#tempo').find('.Circulo').removeClass "tempo"
+	changeTempo: (e) ->
+		@model.changeTempo $(e.target).data('tempo')
+		$(@el).find('#TempoControl').find('input').val @model.get("tempo")
+		@tempoTimer = setTimeout((() => @changeTempo(e)), 25)		
+	stopTempoChange: (e) ->
+		clearTimeout @tempoTimer
 	drawMarker: (index) ->
 		lastIndex = (index + 15) % 16
 		$("#tempo-#{index}").addClass "tempo"

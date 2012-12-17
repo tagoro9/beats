@@ -44,9 +44,9 @@ Templates.pattern_view = """
 <div class="span10 personalSpan12 panelcontrol">
 	<div id="TempoControl">
 		<p>TEMPO</p>
-		<a class="icon-minus down-tempo" href="#"></a>
+		<a class="icon-minus down-tempo tempo" data-tempo="down" href="#"></a>
 		<div class="volume"><input type="text" value="100"></div>
-		<a class="icon-plus up-tempo" href="#"></a>
+		<a class="icon-plus up-tempo tempo" href="#" data-tempo="up"></a>
 	</div>
 	<div id="Sample">
 		<select id="track-url">
