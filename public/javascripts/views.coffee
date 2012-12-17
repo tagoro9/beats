@@ -17,6 +17,7 @@ class @TrackView extends Backbone.View
 	template: _.template Templates.track_view
 	events:
 		"mousedown .volume": "changeVolume"
+		"change .volume input": "setVolume"
 		"mouseup .volume": "stopVolumeChange"
 		"click .mutesolo": "handleMuteSolo"
 	initialize: () ->
@@ -29,6 +30,13 @@ class @TrackView extends Backbone.View
 		@beatsViews.forEach (beat) =>
 			$(@el).find('.track-content').find('.beats').append beat.render()
 		return @
+	setVolume: (e) ->
+		val = parseInt $(e.target).val()
+		if val >= 0 && val <= 100
+			@model.set "volume", val 
+		else
+			@model.set "volume", 100	
+			$(e.target).val "100"	
 	stopVolumeChange: (e) ->
 		clearTimeout @timer
 	handleMuteSolo: (e) ->
