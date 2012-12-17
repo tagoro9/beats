@@ -7,6 +7,13 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
+=begin
+Padrino.use OmniAuth::Builder do
+  provider :twitter, 'sIZtqYgVNG0EuRCpbI1zbA', 'KEgqixs1SuPiwOCYMqiE5NkLtuQrgt1Qvf24A2Qik'
+  provider :facebook, '391198760955646', 'aba8a1c4c21ea3b352236e84abc545f6'
+end
+=end
+
 ##
 # ## Enable devel logging
 #

@@ -1,3 +1,4 @@
+
 class Beats < Padrino::Application
   register CoffeeInitializer
   use ActiveRecord::ConnectionAdapters::ConnectionManagement
@@ -6,6 +7,15 @@ class Beats < Padrino::Application
   register Padrino::Helpers
 
   enable :sessions
+  enable :reload
+  set :login_page , "/login"
+
+=begin
+  use OmniAuth::Builder do
+    provider :twitter,  'consumer_key', 'consumer_secret'
+    provider :facebook, 'app_id', 'app_secret'
+  end
+=end
 
   ##
   # Caching support
@@ -55,6 +65,7 @@ class Beats < Padrino::Application
   get '/login' do
     render 'login'
   end
+
   ##
   # You can manage errors like:
   #

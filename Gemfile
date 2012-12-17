@@ -8,12 +8,25 @@ source :rubygems
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
+
+group :production do
+	gem 'pg'
+end
+
+group :development do
+	gem 'sqlite3'
+end
+
 # Component requirements
 gem 'rack-coffee', :require => "rack/coffee"
 gem 'coffee-script'
 gem 'haml'
 gem 'activerecord', :require => "active_record"
-gem 'sqlite3'
+gem 'bcrypt-ruby', :require => "bcrypt"
+gem 'omniauth', :require => 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 
 # Test requirements
 gem 'rspec', :group => "test"

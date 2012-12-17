@@ -1,4 +1,14 @@
 
+body {
+	background-color: #e9e9e9;
+}
+
+.container{
+	background-color: #fff;
+	width: 990px;
+	padding: 18px;
+}
+
 .personalSpan10{
 	height: 970px;
 }
@@ -6,6 +16,14 @@
 .personalSpan12{
 	height: 100px;
 }
+
+.panelcontrol{
+	margin-left: 0px;
+	border:1px solid black;
+	margin-top: 2px;
+	padding-top: 20px;
+}
+
 
 .CuadroM{
 	float:left;
@@ -23,29 +41,75 @@
 }
 .CuadroI{
 	float:left;
-	height: 50px;
-	width: 50px;
+	height: auto;
+	width: 81px;
 	margin-right: 10px;
 	margin-left: 10px;
 	margin-bottom: 10px;
 	margin-top: 10px;
+	text-align: center;
 }
+
+
+.mutesolo{
+	float:left;
+	height: auto;
+	width: 37px;
+	border: 1px solid #c3c3c3;
+	text-align: center;
+	margin-right: 1px;
+	cursor: pointer;
+}
+
+.mutesolo.active {
+	background: #F00;
+}
+
+.elementoCuadro{
+	float: left;
+}
+
+.track-content {
+	max-width: 1008px;
+	border-bottom: 3px solid #c3c3c3;
+	margin-left: 16px;
+}
+
+.elementoCuadro input{
+	margin-left: 2px;
+	margin-right: 3px;
+	margin-bottom: 6px;
+}
+
+
+.elementoCuadro a{
+	margin-top: 5px;
+}
+
+
+.elementoCuadro input{
+	min-width: 1px;
+	width: 42px;
+
+
+}
+
 /*Quitar las dos siguientes clases*/
 .borde{
 	-moz-box-shadow: 0 0 5px 5px #888;
 	-webkit-box-shadow: 0 0 5px 5px#888;
 	box-shadow: 0 0 5px 5px #888;
 }
-
+	
 
 .Circulo{
 	float:left;
-	height: 42px;
-	width: 42px;
+	height: 30px;
+	width: 30px;
 	margin-right: 10px;
 	margin-left: 10px;
 	margin-bottom: 10px;
-	margin-top: 10px;
+	margin-top: 27px;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	border-radius: 100px;
@@ -53,10 +117,19 @@
 }
 
 #tempo {
-	margin-left: 0px;
+	margin-left: -14px;
 }
 
 #tempo .Circulo {
+	float: left;
+	height: 9px;
+	width: 20px;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-bottom: 10px;
+	margin-top: 13px;
+
+/*	
 	float:left;
 	height: 12px;
 	width: 32px;
@@ -64,6 +137,7 @@
 	margin-left: 15px;
 	margin-bottom: 10px;
 	margin-top: 10px;
+*/
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -75,5 +149,65 @@
 }
 
 .Circulo.true {
-	background: #F00;
+	background: #005580;
+}
+
+.rowdisable {
+opacity: 0.2;
+-moz-opacity: 0.2;
+filter: alpha(opacity=20);
+-khtml-opacity: 0.2;
+}
+
+#TempoControl{
+	float: left;
+	height: auto;
+	width: 150px;
+	/*border:1px solid black;*/
+	text-align: center;
+	/*margin-top: 7px;*/
+	margin-left: 15px;
+}
+
+
+#TempoControl p{
+	margin-bottom: 1px;
+	font-weight: bold;
+}
+
+#TempoControl input{
+	float: left;
+	text-align: center;
+	width: 45px;
+	min-width: 0px;
+}
+
+.up-tempo{
+	float: left;
+	font-size: 24px;
+	margin-top: 4px;
+	color: red;
+	margin-left: 5px;
+}
+
+.down-tempo{
+	float: left;
+	font-size: 24px;
+	color: red;
+	margin-right: 13px;
+	margin-top: 4px;
+	margin-left: 22px;
+}
+
+#Sample{
+	float: left;
+	height: auto;
+	width: 500px;
+	border:1px solid black;
+
+}
+
+#track-url{
+	width: 80px; ç
+	margin-top: 20px;
 }
