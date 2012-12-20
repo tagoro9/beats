@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @Templates = {}
 Templates.beat_view = """
 <div class="Circulo <%= status %>"></div>
