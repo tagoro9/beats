@@ -10,6 +10,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 
 
 group :production do
+	gem 'bundler'
 	gem 'pg'
 end
 
