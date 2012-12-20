@@ -26,7 +26,8 @@ ActiveRecord::Base.configurations[:production] = {
 	:database => "d826t8tpgio4h9",
 	:username => "hmsouaxzckzjzx",
 	:password => "2AzDwewEnzRzfOjZDRmyVRHDs2",
-	:host =>  "ec2-54-243-201-156.compute-1.amazonaws.com"
+	:host =>  "ec2-54-243-201-156.compute-1.amazonaws.com",
+	:port => 5432
 }
 
 ActiveRecord::Base.configurations[:test] = {
