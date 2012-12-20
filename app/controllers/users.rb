@@ -18,7 +18,11 @@ Beats.controllers :users do
   #   "Hello world!"
   # end
 
-
+  get '/auth/:name/callback' do
+    auth = request.env['omniauth.auth']
+    email = "alfonsoglezluis@gmail.com"
+    session[:user] = email
+  end
 
   get :index, :map => "/home" do
     render 'users/user'
