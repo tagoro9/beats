@@ -21,7 +21,7 @@ Beats.controllers :users do
 
 
   get :index, :map => "/home" do
-    "Hello world!"
+    render 'users/user'
   end
 
 end
