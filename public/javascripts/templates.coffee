@@ -50,7 +50,7 @@ Templates.pattern_view = """
 	</div>
 	<div id="Sample">
 		<select id="track-url">
-			<option value="/samples/kick.wav">Kick</option>
+			<option value="http://www.madeincloud.es/beats/samples/kick.wav">Kick</option>
 			<option value="/samples/snare.wav">Snare</option>
 			<option value="/samples/hihat.wav">Hihat</options>
 		</select>

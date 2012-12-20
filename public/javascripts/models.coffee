@@ -67,7 +67,7 @@ class @Pattern extends Backbone.Model
 		compressor: null
 		masterGainNode: null
 		effectLevelNode: null
-		tempo: 92
+		tempo: 100
 		beats_number: 16
 	initialize: () ->
 		@set "bufferLoader", new BufferLoader(@get("context"))
@@ -85,8 +85,15 @@ class @Pattern extends Backbone.Model
 	tracksNumber: () ->
 		@get("tracks").length
 	playTrack: (cid) ->
-		track = @get('tracks').getByCid cid
+		track = @get('tracks').get cid
 		@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, 0);	
+	changeTempo: (op) ->
+		tempo = @get("tempo")
+		switch op
+			when 'up'
+				@set("tempo", ++tempo) if tempo < 220
+			when 'down'
+				@set("tempo", --tempo) if tempo > 40			
 	advanceNote: () ->
 		secondsPerBeat = 60.0 / @get("tempo") / 4
 		@beatIndex++
