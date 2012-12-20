@@ -8,7 +8,6 @@ source :rubygems
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
-
 group :production do
 	gem 'bundler'
 	gem 'pg'
