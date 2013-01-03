@@ -1,4 +1,4 @@
-Beats.controllers :users do
+Beats.controllers :sound do
   # get :index, :map => "/foo/bar" do
   #   session[:foo] = "bar"
   #   render 'index'
@@ -18,14 +18,12 @@ Beats.controllers :users do
   #   "Hello world!"
   # end
 
-  get '/auth/:name/callback' do
-    auth = request.env['omniauth.auth']
-    email = "alfonsoglezluis@gmail.com"
-    session[:user] = email
+  get :show do
+    
   end
 
-  get :index, :map => "/home" do
-    render 'users/user'
+  post :create do
+    
   end
 
 end
