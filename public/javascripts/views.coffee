@@ -67,7 +67,7 @@ class @PatternView extends Backbone.View
 		"change #TempoControl input": "setTempo" #handle tempo input change
 	initialize: () ->
 		$.get '/sound/family', (data) ->
-			text1 = '<select id="Families">'
+			text1 = '<select id="Families"><option value="">Select family</option>'
 			for family in data
 				text1 = text1 + "<option value=\"#{family}\">#{family}</option>"
 			text1 = text1 + '</select>'
@@ -75,14 +75,15 @@ class @PatternView extends Backbone.View
 			#alert 'Load was performed.'
 
 
-		$.get '/sound/samples/DGX200', (data) ->
-			text2 = '<select id="Samples">'
-			console.log(data)
-			for name, url of data
-				text2 = text2 + "<option value=\"#{url}\">#{name}</option>"
-			text2 = text2 + '</select>'
-			$('#Sounds').append(text2)
-			alert 'Load was performed.'
+		$('body').on 'change', "#Families", (e) ->
+			console.log "cambio" 
+			$.get "/sound/samples/#{$(this).val()}", (data) ->
+				$('#Samples').remove()
+				text2 = '<select id="Samples">'
+				for name, url of data
+					text2 = text2 + "<option value=\"#{url}\">#{name}</option>"
+				text2 = text2 + '</select>'
+				$('#Sounds').append(text2)
 
 		
 

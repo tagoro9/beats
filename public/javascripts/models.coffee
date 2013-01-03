@@ -76,8 +76,8 @@ class @Pattern extends Backbone.Model
 		@beatIndex = 0
 		@lastDrawTime = -1
 	addTrack: () ->
-		@get("bufferLoader").loadUrl($('#track-url').val(), (buffer) =>
-			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: $('#track-url').find(':selected').text()})
+		@get("bufferLoader").loadUrl($('#Samples').val(), (buffer) =>
+			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: $('#Samples').find(':selected').text()})
 		)
 	clearTracks: () ->
 		@get("tracks").reset()
