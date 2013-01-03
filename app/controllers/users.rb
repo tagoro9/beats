@@ -18,10 +18,10 @@ Beats.controllers :users do
   #   "Hello world!"
   # end
 
-  get '/auth/:name/callback' do
-    #@auth = request.env['omniauth.auth']
-    render 'users/user'
-  end
+get :auth, :map => '/auth/:provider/callback' do
+  auth    = request.env["omniauth.auth"]
+  render 'users/user'
+end
 
   get :index, :map => "/home" do
     render 'users/user'
