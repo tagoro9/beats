@@ -19,8 +19,8 @@ Beats.controllers :users do
   # end
 
   get '/auth/:name/callback' do
-    auth = request.env['omniauth.auth']
-    "#{auth.inspect}"
+    @auth = request.env['omniauth.auth']
+    render 'users/user'
   end
 
   get :index, :map => "/home" do

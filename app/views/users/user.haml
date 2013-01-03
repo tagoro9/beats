@@ -3,7 +3,8 @@
     .span8
       #header-container
         %a#backbutton.win-backbutton{:href => "#"}
-        %h3 BEATS
+        %h3
+          #{@auth.inspect}
     #top-info.pull-right
       %a.pull-left{:href => "#"}
         .top-info-block
