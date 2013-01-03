@@ -19,7 +19,8 @@ class Beats < Padrino::Application
   use Rack::Session::Cookie
   use OmniAuth::Builder do
     provider :twitter, 'sIZtqYgVNG0EuRCpbI1zbA', 'KEgqixs1SuPiwOCYMqiE5NkLtuQrgt1Qvf24A2Qik'
-    provider :facebook, '391198760955646', 'aba8a1c4c21ea3b352236e84abc545f6'
+    provider :facebook, '391198760955646', '60d2c89ffac50a4f28a1262b74815960
+'
   end
 
   ##
