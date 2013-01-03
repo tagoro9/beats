@@ -20,7 +20,7 @@ Beats.controllers :users do
 
 get :auth, :map => '/auth/:provider/callback' do
   auth    = request.env["omniauth.auth"]
-  render 'users/user'
+  "#{auth.inspect}"
 end
 
   get :index, :map => "/home" do
