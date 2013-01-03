@@ -66,6 +66,26 @@ class @PatternView extends Backbone.View
 		"mouseup .tempo": "stopTempoChange" #handle tempo key unpress
 		"change #TempoControl input": "setTempo" #handle tempo input change
 	initialize: () ->
+		$.get '/sound/family', (data) ->
+			text1 = '<select id="Families">'
+			for family in data
+				text1 = text1 + "<option value=\"#{family}\">#{family}</option>"
+			text1 = text1 + '</select>'
+			$('#Sounds').html(text1)
+			#alert 'Load was performed.'
+
+
+		$.get '/sound/samples/DGX200', (data) ->
+			text2 = '<select id="Samples">'
+			console.log(data)
+			for name, url of data
+				text2 = text2 + "<option value=\"#{url}\">#{name}</option>"
+			text2 = text2 + '</select>'
+			$('#Sounds').append(text2)
+			alert 'Load was performed.'
+
+		
+
 		@model.get("tracks").bind 'add', @renderAdded #handle new track added on model
 		@model.get("tracks").bind 'remove', @renderDel #handle last track removed on model
 		@model.get("tracks").bind 'reset', @renderClear #handle clear all track on model

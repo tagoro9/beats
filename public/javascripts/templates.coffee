@@ -48,12 +48,8 @@ Templates.pattern_view = """
 		<div class="volume"><input type="text" value="100"></div>
 		<a class="icon-plus up-tempo" href="#"></a>
 	</div>
-	<div id="Sample">
-		<select id="track-url">
-			<option value="http://www.madeincloud.es/beats/samples/index?nombre=kick.wav">Kick</option>
-			<option value="/samples/snare.wav">Snare</option>
-			<option value="/samples/hihat.wav">Hihat</options>
-		</select>
+	<div id="Sounds">
+		
 	</div>
 
 </div>
