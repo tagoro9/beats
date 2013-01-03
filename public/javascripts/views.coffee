@@ -82,15 +82,24 @@ class @PatternView extends Backbone.View
 		@model.addTrack()
 	delTrack: () => #delete track from model
 		@model.delTrack() if @model.tracksNumber() > 0
+	handlePause: () ->
+		@model.stop()
+		@playing = false
+		$('#play').addClass 'icon-play-alt'
+		$('#play').removeClass 'icon-pause'		
 	handlePlay: () ->
-		return false if @playing is on #do not play song if its already playing
+		if @playing is on #do not play song if its already playing
+			@handlePause()
+			return false
+		$('#play').removeClass 'icon-play-alt'
+		$('#play').addClass 'icon-pause'
 		@playing = true #set playing flag
-		@model.noteTime = 0.0 #reset start time
+		@model.noteTime = 0.0 #reset start time	
 		@model.startTime = @model.get("context").currentTime + 0.005 #get current time to play
-		@model.beatIndex = 0 #start playing from beginning
 		@model.play() #play song
 	handleStop: () ->
 		@playing = false #clear playing flag
+		@model.beatIndex = 0 #start playing from beginning	
 		@model.stop() #stop playing song
 		@clearMarkers()
 	setTempo: (e) -> #tempo input change

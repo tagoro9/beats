@@ -73,6 +73,7 @@ class @Pattern extends Backbone.Model
 		@set "bufferLoader", new BufferLoader(@get("context"))
 		@set "player", new Player(@get("context"))
 		@get("context").createBufferSource()
+		@beatIndex = 0
 		@lastDrawTime = -1
 	addTrack: () ->
 		@get("bufferLoader").loadUrl($('#track-url').val(), (buffer) =>
@@ -116,6 +117,7 @@ class @Pattern extends Backbone.Model
 			@play()
 		), 0)
 	stop: () ->
+		@.trigger 'updateMarker', (@beatIndex + 15) % 16
 		clearTimeout @timer
 
 
