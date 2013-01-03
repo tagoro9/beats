@@ -85,10 +85,14 @@ class @PatternView extends Backbone.View
 	handlePause: () ->
 		@model.stop()
 		@playing = false
+		$('#play').addClass 'icon-play-alt'
+		$('#play').removeClass 'icon-pause'		
 	handlePlay: () ->
 		if @playing is on #do not play song if its already playing
 			@handlePause()
 			return false
+		$('#play').removeClass 'icon-play-alt'
+		$('#play').addClass 'icon-pause'
 		@playing = true #set playing flag
 		@model.noteTime = 0.0 #reset start time	
 		@model.startTime = @model.get("context").currentTime + 0.005 #get current time to play
