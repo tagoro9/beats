@@ -28,6 +28,7 @@ Beats.controllers :users do
   end
 
   get :index, :map => "/home" do
+    @songs = Song.find :all, :order => 'valoration DESC', :limit => 5
     render 'users/user'
   end
 

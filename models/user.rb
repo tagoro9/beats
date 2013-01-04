@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+	has_many :songs
+
 	def self.create_with_omniauth(auth)
 	  create! do |user|
 	    user.provider = auth["provider"]

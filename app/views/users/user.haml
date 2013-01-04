@@ -21,106 +21,31 @@
       #{@current_user.name}
   .containerDos
     %h2.label-info.Alineado My Beats
-    #listview.grid-layout.Alto
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
+    #listview.grid-layout.Alto    
+      - @current_user.songs.each do |song|
+        .mediumListIconTextItem.AnchoItem
+          .containerBotones
+            .containerIcon.btn.btn-success
+              .icon-play
+            .containerIcon.btn.btn-warning
+              .icon-pencil-2
+            .containerIcon.btn.btn-facebook
+              .icon-facebook-2
+            .containerIcon.btn.btn-twitter
+              .icon-twitter-2
+          %p #{song.title}
   .containerTres
     %h2.label-success.Alineado Best Beats
     #listview1.grid-layout.Alto
-      .mediumListIconTextItem.AnchoItem1
-        .containerBotones1
-          .containerIcon1.btn.btn-success
-            .icon-play
-          .containerIcon1.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon1.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon1.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem1
-        .containerBotones1
-          .containerIcon1.btn.btn-success
-            .icon-play
-          .containerIcon1.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon1.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon1.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem1
-        .containerBotones1
-          .containerIcon1.btn.btn-success
-            .icon-play
-          .containerIcon1.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon1.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon1.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
+      - @songs.each do |song|    
+        .mediumListIconTextItem.AnchoItem1
+          .containerBotones1
+            .containerIcon1.btn.btn-success
+              .icon-play
+            .containerIcon1.btn.btn-warning
+              .icon-pencil-2
+            .containerIcon1.btn.btn-facebook
+              .icon-facebook-2
+            .containerIcon1.btn.btn-twitter
+              .icon-twitter-2
+        %p #{song.title}
