@@ -21,7 +21,7 @@ class @TrackView extends Backbone.View
 		"mouseup .volume": "stopVolumeChange" #handle unpress on volume key (stop changing volume)
 		"click .mutesolo": "handleMuteSolo" #handle click on mute / solo control
 	initialize: () ->
-		@model.on 'change', @render
+		@model.on 'loaded', @updateTrack
 		@beatsViews = [] #views for beats within the track
 		@model.get("beats").on 'playMe', () => @model.trigger('playMe',@model.cid) #play sound when a beat is set
 		@model.get("beats").forEach (beat) => #create all the beats views
@@ -33,6 +33,10 @@ class @TrackView extends Backbone.View
 		@beatsViews.forEach (beat) =>
 			$(@el).find('.track-content').find('.beats').append beat.render() #append each beat view
 		return @
+	updateTrack: (volume,mute,solo) =>
+		$(@el).find('.volume').find('input').val volume
+		$(@el).find('.mute').addClass 'active' if mute
+		$(@el).find('.solo').addClass 'active' if solo
 	setVolume: (e) -> #volume text input change
 		val = parseInt $(e.target).val()
 		if val >= 0 && val <= 100 #volume must be within [0..100]

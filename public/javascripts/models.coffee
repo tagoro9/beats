@@ -157,11 +157,11 @@ class @Pattern extends Backbone.Model
 			@get("tracks").add track
 			if array?
 				console.log "Update track params"
-				track.set 'tempo', array['tempo'], {silent: true}
 				track.set 'volume', array['volume'], {silent: true}
 				track.set 'mute', array['mute'], {silent: true}
-				track.set 'solo', array['solo']
-				track.setBeats array['beats'] 			
+				track.set 'solo', array['solo'], {silent: true}
+				track.setBeats array['beats']
+				track.trigger 'loaded', array['volume'], array['mute'], array['solo']
 		)
 	newSolo: (id) =>
 		solo = @get 'solos'
