@@ -7,8 +7,8 @@
     #top-info.pull-right
       %a.pull-left{:href => "#"}
         .top-info-block
-          %h3 Nombre
-          %h4 Apellido
+          %h3
+            #{@current_user.name}
         .top-info-block
           %b.icon-user
       %hr.separator.pull-left
