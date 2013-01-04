@@ -16,6 +16,7 @@
           %th=mat(:song, :music)
           %th=mat(:song, :created_at)
           %th=mat(:song, :updated_at)
+          %th=mat(:song, :user_id)
           %th.last="&nbsp;"
         -@songs.each do |song|
           %tr
@@ -25,6 +26,7 @@
             %td=song.music
             %td=song.created_at
             %td=song.updated_at
+            %td=song.user_id
             %td.last
               =button_to pat(:edit), url(:songs, :edit, :id => song.id), :method => :get, :class => :button_to
               ="|"

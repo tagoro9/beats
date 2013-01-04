@@ -36,5 +36,6 @@ class Admin < Padrino::Application
     role.project_module :users, '/users'
     role.project_module :accounts, '/accounts'
     role.project_module :sounds, '/sounds'
+    role.project_module :songs, '/songs'
   end
 end
