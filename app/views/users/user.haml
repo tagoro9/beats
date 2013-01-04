@@ -25,14 +25,10 @@
       - @current_user.songs.each do |song|
         .mediumListIconTextItem.AnchoItem
           .containerBotones
-            .containerIcon.btn.btn-success
+            .containerIcon.btn.btn-success.playSong{'data-url' => "http://localhost:3000/beats/#{song.id}"}
               .icon-play
-            .containerIcon.btn.btn-warning
-              .icon-pencil-2
-            .containerIcon.btn.btn-facebook
-              .icon-facebook-2
             .containerIcon.btn.btn-twitter
-              .icon-twitter-2
+              .icon-twitter-2{'data-url' => "https://twitter.com/intent/tweet?url=http://mybeats.herokuapp.com/beats/#{song.id}&text=Listen to my new song: #{song.title}&via=beatsstw"}
           %p #{song.title}
   .containerTres
     %h2.label-success.Alineado Best Beats
@@ -42,10 +38,9 @@
           .containerBotones1
             .containerIcon1.btn.btn-success
               .icon-play
-            .containerIcon1.btn.btn-warning
-              .icon-pencil-2
-            .containerIcon1.btn.btn-facebook
-              .icon-facebook-2
             .containerIcon1.btn.btn-twitter
               .icon-twitter-2
-        %p #{song.title}
+          .titulo
+            %p #{song.title}
+          .titulo
+            %p #{song.user.name}
