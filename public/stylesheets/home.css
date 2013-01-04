@@ -152,3 +152,9 @@ audio{
 .containerIcon1 [class^="icon-"], .containerIcon1 [class*=" icon-"]{
 	margin-left: -8px !important;
 }
+
+.titulo{
+	overflow:hidden; 
+	width: 100px;
+	height: 20px;
+}
