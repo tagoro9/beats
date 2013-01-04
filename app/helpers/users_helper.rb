@@ -3,6 +3,7 @@
 Beats.helpers do
 
 	def signed_in?
+		@current_user = User.find_by_uid(session['dj']) if session['dj']
 		!@current_user.nil?
 	end
 

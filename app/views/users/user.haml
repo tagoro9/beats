@@ -7,8 +7,8 @@
     #top-info.pull-right
       %a.pull-left{:href => "#"}
         .top-info-block
-          %h3 Nombre
-          %h4 Apellido
+          %h3
+            #{@current_user.name}
         .top-info-block
           %b.icon-user
       %hr.separator.pull-left
@@ -16,14 +16,9 @@
           %b.icon-settings
 .container.borde
   .containerUno
-    .containerFoto
-    %h2.Alineado Nombre
-    .containerRepro
-      %h2.Alineado Title
-      %audio{:controls => "controls"}
-        %source{:src => "", :type => "audio/ogg"}/
-        %source{:src => "", :type => "audio/mpeg"}/
-        Your browser does not support the audio element.
+    %img.containerFoto{:src => "https://api.twitter.com/1/users/profile_image?screen_name=#{@current_user.email}&size=original"}
+    %h2.AlineadoBlack
+      #{@current_user.name}
   .containerDos
     %h2.label-info.Alineado My Beats
     #listview.grid-layout.Alto

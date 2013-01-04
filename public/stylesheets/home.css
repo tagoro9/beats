@@ -33,6 +33,11 @@
 	min-height: 392px;
 }
 
+.AlineadoBlack{
+	text-align: center;
+	color: #000;
+}
+
 .Alineado{
 	text-align: center;
 	color: white;
@@ -104,12 +109,6 @@
 audio{
 	float:left;
 	width: 180px;
-}
-
-.containerRepro{
-	float:left;
-	width: 180px;
-	margin-top: 80px;
 }
 
 .containerBotones{

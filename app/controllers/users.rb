@@ -19,7 +19,7 @@ Beats.controllers :users do
     auth    = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)  
     sign_in(user)
-    render 'users/user'
+    redirect url('/home')
   end
 
   get :destroy, :map => '/logout' do
