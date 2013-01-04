@@ -33,8 +33,14 @@
 	min-height: 392px;
 }
 
+.AlineadoBlack{
+	text-align: center;
+	color: #000;
+}
+
 .Alineado{
 	text-align: center;
+	color: white;
 }
 
 .AnchoItem{
@@ -65,23 +71,6 @@
 	background-size: 176px 176px;
 }
 
-.containerMiniFoto{
-	float:left;
-	width: 50px;
-	height: 50px;
-	background-image: url(/img/MusicIcon.png);
-	background-size: 50px 50px;
-	margin: 5px;
-}
-
-.containerMiniFoto1{
-	float:left;
-	width: 50px;
-	height: 50px;
-	background-image: url(/img/MusicIcon1.png);
-	background-size: 50px 50px;
-	margin: 5px;
-}
 
 #listview{
 	overflow:scroll;height:390px;width:422px;
@@ -122,42 +111,44 @@ audio{
 	width: 180px;
 }
 
-.containerRepro{
+.containerBotones{
+	float: left;
+	width: 96px;
+	height: 75px
+}
+
+.containerIcon{
 	float:left;
-	width: 180px;
-	margin-top: 80px;
+	margin: 5px;
+	width: 10px;
 }
 
-.containerEdit.icon-pencil-2.btn.btn-info{
-	float:right;
-	margin: 5px;
-	font-size: 20px;
-	text-align: center;
-	width: 20px;
+[class^="icon-"], [class*=" icon-"]{
+	margin-left: -3px;
 }
 
-.containerPlay.icon-play.btn.btn-info{
-	float:right;
-	margin: 5px;
-	font-size: 20px;
-	text-align: center;
-	width: 20px;
+.btn.btn-facebook{
+	/*background-color:#3b5998;*/
+	background-color:#0c4da2;
+	border-color:#3b5998;
+}
+.btn.btn-twitter{
+	background-color:#00a0d1;
+	border-color:#00a0d1;
 }
 
-.containerEdit.icon-pencil-2.btn.btn-success{
-	float:right;
-	margin: 5px;
-	font-size: 15px;
-	text-align: center;
-	width: 25px;
-	padding: 2px;
+.containerBotones1{
+	float: left;
+	width: 65px;
+	height: 65px
 }
 
-.containerPlay.icon-play.btn.btn-success{
-	float:right;
-	margin: 5px;
-	font-size: 15px;
-	text-align: center;
-	width: 25px;
-	padding: 2px;
+.containerIcon1{
+	float:left;
+	margin: 2px;
+	width: 0px;
+}
+
+.containerIcon1 [class^="icon-"], .containerIcon1 [class*=" icon-"]{
+	margin-left: -8px !important;
 }

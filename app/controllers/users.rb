@@ -1,27 +1,30 @@
 Beats.controllers :users do
-  # get :index, :map => "/foo/bar" do
-  #   session[:foo] = "bar"
-  #   render 'index'
-  # end
 
-  # get :sample, :map => "/sample/url", :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
+  require 'json'
 
-  # get :foo, :with => :id do
-  #   "Maps to url '/foo/#{params[:id]}'"
-  # end
+  before :index do
+    authenticate()
+  end
 
-  # get "/example" do
-  #   "Hello world!"
-  # end
 
-  get '/auth/:name/callback' do
-    auth = request.env['omniauth.auth']
-    email = "alfonsoglezluis@gmail.com"
-    session[:user] = email
+  get :login, :map => '/' do
+      if signed_in?
+        render 'users/user'
+      else
+        render 'users/login'
+      end
+  end
+
+  get :auth, :map => '/auth/:provider/callback' do
+    auth    = request.env["omniauth.auth"]
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)  
+    sign_in(user)
+    redirect url('/home')
+  end
+
+  get :destroy, :map => '/logout' do
+    sign_out()
+    render 'users/login'
   end
 
   get :index, :map => "/home" do
