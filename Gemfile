@@ -8,8 +8,8 @@ source :rubygems
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
-
 group :production do
+	gem 'bundler'
 	gem 'pg'
 end
 
@@ -26,6 +26,7 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'omniauth', :require => 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'json', :require => 'json'
 
 
 # Test requirements

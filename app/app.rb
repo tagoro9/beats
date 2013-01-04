@@ -6,16 +6,22 @@ class Beats < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
 
-  enable :sessions
+  #enable :sessions
   enable :reload
   set :login_page , "/login"
 
-=begin
+  set :sessions,
+  :key          => '__awesome_key',
+  :secret       => 'awesome_password',
+  :expire_after => 1.year
+
+
+  use Rack::Session::Cookie
   use OmniAuth::Builder do
-    provider :twitter,  'consumer_key', 'consumer_secret'
-    provider :facebook, 'app_id', 'app_secret'
+    provider :twitter, 'sIZtqYgVNG0EuRCpbI1zbA', 'KEgqixs1SuPiwOCYMqiE5NkLtuQrgt1Qvf24A2Qik'
+    provider :facebook, '391198760955646', '60d2c89ffac50a4f28a1262b74815960
+'
   end
-=end
 
   ##
   # Caching support
@@ -57,13 +63,8 @@ class Beats < Padrino::Application
   #   end
   #
 
-  get '/' do
+  get '/beats(/:id)' do
     render 'index'
-  end
-
-
-  get '/login' do
-    render 'login'
   end
 
   ##

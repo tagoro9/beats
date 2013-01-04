@@ -7,8 +7,8 @@
     #top-info.pull-right
       %a.pull-left{:href => "#"}
         .top-info-block
-          %h3 Nombre
-          %h4 Apellido
+          %h3
+            #{@current_user.name}
         .top-info-block
           %b.icon-user
       %hr.separator.pull-left
@@ -16,116 +16,31 @@
           %b.icon-settings
 .container.borde
   .containerUno
-    .containerFoto
-    %h2.Alineado Nombre
-    .containerRepro
-      %h2.Alineado Title
-      %audio{:controls => "controls"}
-        %source{:src => "", :type => "audio/ogg"}/
-        %source{:src => "", :type => "audio/mpeg"}/
-        Your browser does not support the audio element.
+    %img.containerFoto{:src => "https://api.twitter.com/1/users/profile_image?screen_name=#{@current_user.email}&size=original"}
+    %h2.AlineadoBlack
+      #{@current_user.name}
   .containerDos
     %h2.label-info.Alineado My Beats
-    #listview.grid-layout.Alto
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem
-        .containerBotones
-          .containerIcon.btn.btn-success
-            .icon-play
-          .containerIcon.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
+    #listview.grid-layout.Alto    
+      - @current_user.songs.each do |song|
+        .mediumListIconTextItem.AnchoItem
+          .containerBotones
+            .containerIcon.btn.btn-success.playSong{'data-url' => "http://localhost:3000/beats/#{song.id}"}
+              .icon-play
+            .containerIcon.btn.btn-twitter
+              .icon-twitter-2{'data-url' => "https://twitter.com/intent/tweet?url=http://mybeats.herokuapp.com/beats/#{song.id}&text=Listen to my new song: #{song.title}&via=beatsstw"}
+          %p #{song.title}
   .containerTres
     %h2.label-success.Alineado Best Beats
     #listview1.grid-layout.Alto
-      .mediumListIconTextItem.AnchoItem1
-        .containerBotones1
-          .containerIcon1.btn.btn-success
-            .icon-play
-          .containerIcon1.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon1.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon1.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem1
-        .containerBotones1
-          .containerIcon1.btn.btn-success
-            .icon-play
-          .containerIcon1.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon1.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon1.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
-      .mediumListIconTextItem.AnchoItem1
-        .containerBotones1
-          .containerIcon1.btn.btn-success
-            .icon-play
-          .containerIcon1.btn.btn-warning
-            .icon-pencil-2
-          .containerIcon1.btn.btn-facebook
-            .icon-facebook-2
-          .containerIcon1.btn.btn-twitter
-            .icon-twitter-2
-        %p Texto de prueba
+      - @songs.each do |song|    
+        .mediumListIconTextItem.AnchoItem1
+          .containerBotones1
+            .containerIcon1.btn.btn-success
+              .icon-play
+            .containerIcon1.btn.btn-twitter
+              .icon-twitter-2
+          .titulo
+            %p #{song.title}
+          .titulo
+            %p #{song.user.name}
