@@ -9,6 +9,7 @@ Beats.controllers :users do
 
   get :login, :map => '/' do
       if signed_in?
+        @songs = Song.find :all, :order => 'valoration DESC', :limit => 5
         render 'users/user'
       else
         render 'users/login'
