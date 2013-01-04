@@ -3,10 +3,26 @@
 Beats.helpers do
 
 	def signed_in?
-		return true if session['dj']
-		return false
+		!@current_user.nil?
 	end
-  # def simple_helper_method
-  #  ...
-  # end
+
+	def sign_in(user)
+		session['dj'] = user.uid
+		@current_user = user
+	end
+
+	def sign_out
+		@current_user = nil
+		session.clear
+	end
+
+    def authenticate
+      deny_access unless signed_in?
+    end
+
+	def deny_access
+		halt redirect url('/')
+	end
+
+
 end
