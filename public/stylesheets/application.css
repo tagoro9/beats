@@ -24,7 +24,6 @@ body {
 	padding-top: 20px;
 }
 
-
 .CuadroM{
 	float:left;
 	height: 50px;
@@ -32,6 +31,7 @@ body {
 	margin-bottom: 25px;
 	margin-top: 25px;
 }
+
 .GrupoCuadroM{
 	float:left;
 	height: 200px;
@@ -39,6 +39,7 @@ body {
 	margin-right: 25px;
 	margin-left: 25px;
 }
+
 .CuadroI{
 	float:left;
 	height: auto;
