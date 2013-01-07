@@ -48,14 +48,15 @@ class @Tracks extends Backbone.Collection
 class @Player
 	constructor: (@context) ->
 	playNote: (buffer, pan, x, y, z, sendGain, mainGain, playbackRate, noteTime) ->
-		console.log "sendGain #{sendGain}"
-		console.log "mainGain #{mainGain}"
 		voice = @context.createBufferSource()
 		voice.buffer = buffer
 		gainNode = @context.createGainNode();
-		gainNode.gain.value = (mainGain / 100.0) * (sendGain / 100.0)
+		gainNode.gain.value = (mainGain / 100.0)
+		masterGainNode = @context.createGainNode()
+		masterGainNode.gain.value = sendGain / 100.0
 		voice.connect gainNode
-		gainNode.connect @context.destination
+		gainNode.connect masterGainNode
+		masterGainNode.connect @context.destination
 		voice.noteOn(noteTime)	if mainGain > 0 && sendGain > 0
 
 #Pattern
