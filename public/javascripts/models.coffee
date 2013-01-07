@@ -19,11 +19,28 @@ class @Track extends Backbone.Model
 		beats: new Beats()
 		beats_number: 16
 		volume: 100
-		sound_id: 1
+		url: null
 		name: ""
 		buffer: null
 		solo: false
 		mute: false
+	beats: () ->
+		array = []
+		@get('beats').forEach (beat) ->
+			if beat.get('status') is off
+				array.push 0
+			else
+				array.push 1
+		return array
+	toJSON: () ->
+		track = {}
+		track['name'] = @get 'name'
+		track['url'] = @get 'url'
+		track['volume'] = @get 'volume'
+		track['mute'] = @get 'mute'
+		track['solo'] = @get 'solo'
+		track['beats'] = @beats()
+		return track
 	initialize: (options) ->
 		_(@get("beats_number")).times () =>
 			@get("beats").add(new Beat())
@@ -82,10 +99,19 @@ class @Pattern extends Backbone.Model
 		@beatIndex = 0
 		@lastDrawTime = -1
 	saveSong: () ->
-		console.log "Saving song to server"
+		song = {}
+		song['volume'] = @get 'masterGainNode'
+		song['tempo'] = @get 'tempo'
+		song['solos'] = @get 'solos'
+		tracks = @get('tracks')
+		song['tracks'] = tracks.length
+		track_number = 1
+		tracks.forEach (track) ->
+			song[track_number++] = track.toJSON()
+		console.log JSON.stringify(song)
 	addTrack: (url,name) ->
 		@get("bufferLoader").loadUrl(url, (buffer) =>
-			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: name})
+			@get("tracks").add new Track({url: url, buffer: buffer, name: name})
 		)
 	newSolo: (id) =>
 		solo = @get 'solos'
