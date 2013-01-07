@@ -52,11 +52,12 @@ Templates.pattern_view = """
 
 	<div id="TempoControl">
 		<p>TEMPO</p>
-		<a class="icon-minus down-tempo" href="#"></a>
+		<a class="icon-minus tempo down-tempo" data-tempo="down" href="#"></a>
 		<div class="volume"><input type="text" value="100"></div>
-		<a class="icon-plus up-tempo" href="#"></a>
+		<a class="icon-plus tempo up-tempo" data-tempo="up" href="#"></a>
 	</div>
-    <input type="range" min="0" max="100" step="1" value="80"/>
+    <input type="range" id="generalVolume" min="0" max="100" step="1" value="80"/>
+    <span id="generalVolumeText">80</span>
     <div id="songControl">
     	<a id="play" class="icon-play-alt" href="#"></a>
     	<a class="icon-download-2" href="#"></a>

@@ -62,9 +62,10 @@ class @PatternView extends Backbone.View
 		"click #clear": "clearTracks" #handle clear button
 		"click #play": "handlePlay" #handle play button
 		"click #stop": "handleStop" #handle stop button
-		"mousedown .tempo": "changeTempo" #handle tempo key press
-		"mouseup .tempo": "stopTempoChange" #handle tempo key unpress
+		"mousedown a.tempo": "changeTempo" #handle tempo key press
+		"mouseup a.tempo": "stopTempoChange" #handle tempo key unpress
 		"change #TempoControl input": "setTempo" #handle tempo input change
+		"change #generalVolume": "handleGenVolumeChange" #Cahnge general volume slider
 	initialize: () ->
 		$.get '/sound/family', (data) ->
 			text1 = '<ul>'
@@ -114,6 +115,10 @@ class @PatternView extends Backbone.View
 		@model.addTrack(url,name)
 	delTrack: () => #delete track from model
 		@model.delTrack() if @model.tracksNumber() > 0
+	handleGenVolumeChange: (e) ->
+		volume = $(e.target).val()
+		$('#generalVolumeText').html(volume)
+		@model.changeVolume volume
 	handlePause: () ->
 		@model.stop()
 		@playing = false
@@ -144,10 +149,12 @@ class @PatternView extends Backbone.View
 	clearMarkers: () ->
 		$(@el).find('#tempo').find('.Circulo').removeClass "tempo"
 	changeTempo: (e) ->
+		console.log "Cambiando tempoooooo"
 		@model.changeTempo $(e.target).data('tempo')
 		$(@el).find('#TempoControl').find('input').val @model.get("tempo")
 		@tempoTimer = setTimeout((() => @changeTempo(e)), 25)		
 	stopTempoChange: (e) ->
+		console.log "Pare de cambiar el tempo!!!"
 		clearTimeout @tempoTimer
 	drawMarker: (index) ->
 		lastIndex = (index + 15) % 16

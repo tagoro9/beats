@@ -48,13 +48,15 @@ class @Tracks extends Backbone.Collection
 class @Player
 	constructor: (@context) ->
 	playNote: (buffer, pan, x, y, z, sendGain, mainGain, playbackRate, noteTime) ->
-	    voice = @context.createBufferSource()
-	    voice.buffer = buffer
-	    gainNode = @context.createGainNode();
-	    gainNode.gain.value = mainGain / 100.0
-	    voice.connect gainNode
-	    gainNode.connect @context.destination
-	    voice.noteOn(noteTime)	if mainGain > 0
+		console.log "sendGain #{sendGain}"
+		console.log "mainGain #{mainGain}"
+		voice = @context.createBufferSource()
+		voice.buffer = buffer
+		gainNode = @context.createGainNode();
+		gainNode.gain.value = (mainGain / 100.0) * (sendGain / 100.0)
+		voice.connect gainNode
+		gainNode.connect @context.destination
+		voice.noteOn(noteTime)	if mainGain > 0 && sendGain > 0
 
 #Pattern
 class @Pattern extends Backbone.Model
@@ -65,7 +67,7 @@ class @Pattern extends Backbone.Model
 		player: null
 		convolver: null
 		compressor: null
-		masterGainNode: null
+		masterGainNode: 80
 		effectLevelNode: null
 		tempo: 100
 		beats_number: 16
@@ -88,7 +90,9 @@ class @Pattern extends Backbone.Model
 		@get("tracks").length
 	playTrack: (cid) ->
 		track = @get('tracks').get cid
-		@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, 0);	
+		@get("player").playNote(track.get("buffer"), false, 0,0,-2, @get('masterGainNode'),track.get("volume"), 1, 0);	
+	changeVolume: (value) ->
+		@set 'masterGainNode',value
 	changeTempo: (op) ->
 		tempo = @get("tempo")
 		switch op
@@ -109,7 +113,7 @@ class @Pattern extends Backbone.Model
 			contextPlayTime = @noteTime + @startTime;			
 			@get("tracks").each (track) =>
 				if track.get("beats").at(@beatIndex).get("status") is on
-					@get("player").playNote(track.get("buffer"), false, 0,0,-2, 1,track.get("volume"), 1, contextPlayTime) unless track.get("mute") is on
+					@get("player").playNote(track.get("buffer"), false, 0,0,-2, @get('masterGainNode'),track.get("volume"), 1, contextPlayTime) unless track.get("mute") is on
 			if @noteTime != @lastDrawTime
 				@lastDrawTime = @noteTime
 				@.trigger 'updateMarker', (@beatIndex + 15) % 16
