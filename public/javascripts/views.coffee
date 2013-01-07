@@ -61,6 +61,7 @@ class @PatternView extends Backbone.View
 	template: _.template Templates.pattern_view #template renderer
 	events:
 		#"click .add-track": "addTrack" #handle add track button
+		"click #saveButton": "saveSong" #event to send song to server
 		"click .del-track": "delTrack" #handle delete track button
 		"click #clear": "clearTracks" #handle clear button
 		"click #play": "handlePlay" #handle play button
@@ -100,6 +101,8 @@ class @PatternView extends Backbone.View
 		@model.get("tracks").bind 'playMe', @play #handle play on track
 		@model.bind 'updateMarker', @drawMarker #handle updateMarker event
 		@render()
+	saveSong: () -> #save song to server
+		@model.saveSong()
 	play: (cid) => #start playing one track
 		@model.playTrack(cid)	
 	render: () => #render pattern

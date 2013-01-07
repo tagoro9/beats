@@ -79,7 +79,7 @@ Templates.pattern_view = """
 	</div>
 	<div class="GrupoCuadroM">
 		<div class="CuadroM">
-			<a class="icon-download-2" href="#"></a>
+			<a id="saveButton" class="icon-download-2" href="#"></a>
 			<h5>SAVE</h5>
 		</div>
 		<div class="CuadroM">

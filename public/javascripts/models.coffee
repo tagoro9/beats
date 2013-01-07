@@ -81,6 +81,8 @@ class @Pattern extends Backbone.Model
 		@get("context").createBufferSource()
 		@beatIndex = 0
 		@lastDrawTime = -1
+	saveSong: () ->
+		console.log "Saving song to server"
 	addTrack: (url,name) ->
 		@get("bufferLoader").loadUrl(url, (buffer) =>
 			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: name})
