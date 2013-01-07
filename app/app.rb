@@ -63,7 +63,7 @@ class Beats < Padrino::Application
   #   end
   #
 
-   get '/beats' do
+  get '/beats' do
     render 'index'
   end
 

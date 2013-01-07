@@ -21,7 +21,8 @@ body {
 	margin-left: 0px;
 	border:1px solid black;
 	margin-top: 2px;
-	padding-top: 20px;
+	height: 150px;
+	/*padding-top: 20px;*/
 }
 
 
@@ -199,15 +200,90 @@ filter: alpha(opacity=20);
 	margin-left: 22px;
 }
 
-#Sample{
+/* Sound Bank */
+
+#Sounds{
 	float: left;
 	height: auto;
-	width: 500px;
-	border:1px solid black;
+	width: auto;
+	/*border:1px solid black;*/
 
 }
 
-#track-url{
-	width: 80px; ç
-	margin-top: 20px;
+#Sounds ul {
+	list-style: none;
 }
+
+#Families{
+	float: left;
+	width: 120px;
+	/*margin-top: 20px;*/
+	/*border: 1px solid black;*/
+	min-height: 150px;
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+
+#Families{
+	overflow:scroll;
+	overflow-x:hidden;
+}
+
+#Families::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#Families::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+#Families::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+
+#Samples{
+	min-height: 150px;
+	float: left;
+	width: 220px;
+	/*margin-top: 20px;*/
+	/*border: 1px solid black;*/
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+#Samples{
+	overflow:scroll;
+	overflow-x:hidden;
+}
+
+#Samples::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#Samples::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+#Samples::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+
+#songControl{
+	float: right;
+	max-width: 25px;
+	background-color: #3A87AD;
+	height: 150px;
+}
+
+#songControl a {
+   color : #FFFFFF;
+   margin: 6px !important;
+}
+
+#volume {
+	float: right;
+}
+

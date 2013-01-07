@@ -57,7 +57,7 @@ class @PatternView extends Backbone.View
 	el: '#beats'
 	template: _.template Templates.pattern_view #template renderer
 	events:
-		"click .add-track": "addTrack" #handle add track button
+		#"click .add-track": "addTrack" #handle add track button
 		"click .del-track": "delTrack" #handle delete track button
 		"click #clear": "clearTracks" #handle clear button
 		"click #play": "handlePlay" #handle play button
@@ -66,6 +66,38 @@ class @PatternView extends Backbone.View
 		"mouseup .tempo": "stopTempoChange" #handle tempo key unpress
 		"change #TempoControl input": "setTempo" #handle tempo input change
 	initialize: () ->
+		$.get '/sound/family', (data) ->
+			text1 = '<ul>'
+			for family in data
+				text1 = text1 + "<li><a href=\"/sound/samples/#{family}\" class=\"Family\">#{family}</a></li>"
+			text1 = text1 + '</ul>'
+			$('#Families').html(text1)
+			#alert 'Load was performed.'
+
+		$('body').on 'click', ".Family", (e) ->
+			e.preventDefault()
+			#console.log($(this).href())
+			console.log($(this))
+			$.get "#{$(this).attr("href")}", (data) ->
+				#$('#Samples').remove()
+				text2 = '<ul>'
+				for name, url of data
+					text2 = text2 + "<li><a class=\"sampleLink\" href=\"#\" data-name=\"#{name}\" data-url=\"#{url}\">#{name}</a></li>"
+				text2 = text2 + '</ul>'
+				$('#Samples').html(text2)
+
+		$('body').on 'click', '.sampleLink', (e) =>
+			e.preventDefault()
+			@addTrack $(e.target).data('url'), $(e.target).data('name')
+			return false;
+
+
+	#<div id="Sounds">
+	#	<div id="Samples">
+	#	</div>
+	#</div>
+		
+
 		@model.get("tracks").bind 'add', @renderAdded #handle new track added on model
 		@model.get("tracks").bind 'remove', @renderDel #handle last track removed on model
 		@model.get("tracks").bind 'reset', @renderClear #handle clear all track on model
@@ -78,8 +110,8 @@ class @PatternView extends Backbone.View
 		$(@el).append @template
 	clearTracks: () -> #clear all tracks from model
 		@model.clearTracks() if @model.tracksNumber() > 0
-	addTrack: () => #add new track to model
-		@model.addTrack()
+	addTrack: (url,name) => #add new track to model
+		@model.addTrack(url,name)
 	delTrack: () => #delete track from model
 		@model.delTrack() if @model.tracksNumber() > 0
 	handlePause: () ->

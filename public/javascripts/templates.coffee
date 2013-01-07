@@ -42,19 +42,27 @@ Templates.pattern_view = """
 	<div id="tempo-15" class="Circulo "></div>
 </div>
 <div class="span10 personalSpan12 panelcontrol">
+	
+	<div id="Sounds">
+		<div id="Families">
+		</div>
+		<div id="Samples">
+		</div>
+	</div>
+
 	<div id="TempoControl">
 		<p>TEMPO</p>
 		<a class="icon-minus down-tempo" href="#"></a>
 		<div class="volume"><input type="text" value="100"></div>
 		<a class="icon-plus up-tempo" href="#"></a>
 	</div>
-	<div id="Sample">
-		<select id="track-url">
-			<option value="http://www.madeincloud.es/beats/samples/index?nombre=kick.wav">Kick</option>
-			<option value="/samples/snare.wav">Snare</option>
-			<option value="/samples/hihat.wav">Hihat</options>
-		</select>
-	</div>
+    <input type="range" min="0" max="100" step="1" value="80"/>
+    <div id="songControl">
+    	<a id="play" class="icon-play-alt" href="#"></a>
+    	<a class="icon-download-2" href="#"></a>
+    	<a id="clear" class="icon-remove" href="#"></a>
+    </div>
+
 
 </div>
 <div class="span10 personalSpan12 panelcontrol">

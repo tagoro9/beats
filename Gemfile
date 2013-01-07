@@ -26,6 +26,7 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'omniauth', :require => 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'json', :require => 'json'
 
 
 # Test requirements
