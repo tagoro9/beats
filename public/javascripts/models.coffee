@@ -82,18 +82,15 @@ class @Pattern extends Backbone.Model
 		@beatIndex = 0
 		@lastDrawTime = -1
 	addTrack: (url,name) ->
-		console.log url
 		@get("bufferLoader").loadUrl(url, (buffer) =>
 			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: name})
 		)
 	newSolo: (id) =>
 		solo = @get 'solos'
 		@set 'solos', ++solo
-		console.log  "new solo #{@get('solos')}"
 	newUnSolo: (id) =>
 		solo = @get 'solos'
 		@set 'solos', --solo		
-		console.log  "new unsolo #{@get('solos')}"
 	clearTracks: () ->
 		@get("tracks").reset()
 	delTrack: () ->
