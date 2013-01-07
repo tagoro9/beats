@@ -46,7 +46,10 @@ class @TrackView extends Backbone.View
 				@model.toggle "mute"
 			when "solo"
 				@model.toggle "solo"
-				@model.trigger('solo',@model.cid) if $(e.target).hasClass("active")
+				if $(e.target).hasClass("active")
+					@model.trigger('solo',@model.cid) 
+				else
+					@model.trigger('unsolo',@model.cid)
 	changeVolume: (e) => #start changing volume
 		@model.changeVolume $(e.target).data('volume')
 		$(@el).find('.volume').find('input').val @model.get("volume") #update view with new value
@@ -91,14 +94,6 @@ class @PatternView extends Backbone.View
 			e.preventDefault()
 			@addTrack $(e.target).data('url'), $(e.target).data('name')
 			return false;
-
-
-	#<div id="Sounds">
-	#	<div id="Samples">
-	#	</div>
-	#</div>
-		
-
 		@model.get("tracks").bind 'add', @renderAdded #handle new track added on model
 		@model.get("tracks").bind 'remove', @renderDel #handle last track removed on model
 		@model.get("tracks").bind 'reset', @renderClear #handle clear all track on model

@@ -71,8 +71,11 @@ class @Pattern extends Backbone.Model
 		masterGainNode: 80
 		effectLevelNode: null
 		tempo: 100
+		solos: 0 #Number of tracks solo
 		beats_number: 16
 	initialize: () ->
+		@get('tracks').bind 'solo', @newSolo
+		@get('tracks').bind 'unsolo', @newUnSolo
 		@set "bufferLoader", new BufferLoader(@get("context"))
 		@set "player", new Player(@get("context"))
 		@get("context").createBufferSource()
@@ -83,6 +86,14 @@ class @Pattern extends Backbone.Model
 		@get("bufferLoader").loadUrl(url, (buffer) =>
 			@get("tracks").add new Track({sound_id: 0, buffer: buffer, name: name})
 		)
+	newSolo: (id) =>
+		solo = @get 'solos'
+		@set 'solos', ++solo
+		console.log  "new solo #{@get('solos')}"
+	newUnSolo: (id) =>
+		solo = @get 'solos'
+		@set 'solos', --solo		
+		console.log  "new unsolo #{@get('solos')}"
 	clearTracks: () ->
 		@get("tracks").reset()
 	delTrack: () ->
@@ -114,7 +125,7 @@ class @Pattern extends Backbone.Model
 			contextPlayTime = @noteTime + @startTime;			
 			@get("tracks").each (track) =>
 				if track.get("beats").at(@beatIndex).get("status") is on
-					@get("player").playNote(track.get("buffer"), false, 0,0,-2, @get('masterGainNode'),track.get("volume"), 1, contextPlayTime) unless track.get("mute") is on
+					@get("player").playNote(track.get("buffer"), false, 0,0,-2, @get('masterGainNode'),track.get("volume"), 1, contextPlayTime) unless track.get("mute") is on || (@get('solos') > 0 && track.get('solo') is off)
 			if @noteTime != @lastDrawTime
 				@lastDrawTime = @noteTime
 				@.trigger 'updateMarker', (@beatIndex + 15) % 16
