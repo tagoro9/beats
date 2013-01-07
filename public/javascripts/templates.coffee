@@ -75,4 +75,40 @@ Templates.pattern_view = """
 
 
 </div>
+<div class="span10 personalSpan12 panelcontrol">
+	<div class="GrupoCuadroM">
+		<div class="CuadroM">
+			<a id="stop" class="icon-stop" href="#"></a>
+			<h5>STOP</h5>
+		</div>
+		<div class="CuadroM">
+			<a id="play" class="icon-play-alt" href="#"></a>
+			<h5>PAUSE</h5>
+		</div>
+	</div>
+	<div class="GrupoCuadroM">
+		<div class="CuadroM">
+			<a id="saveButton" class="icon-download-2" href="#"></a>
+			<h5>SAVE</h5>
+		</div>
+		<div class="CuadroM">
+			<a class="icon-upload-4" href="#"></a>
+			<h5>LOAD</h5>
+		</div>
+		<div class="CuadroM">
+			<a id="clear" class="icon-remove" href="#"></a>
+			<h5>CLEAR</h5>
+		</div>
+	</div>
+	<div class="GrupoCuadroM">		
+		<div class="CuadroM">
+			<a class="icon-volume-mute" href="#"></a>
+			<h5>CLEAR</h5>
+		</div>		
+		<div class="CuadroM">
+			<a class="icon-volume-2" href="#"></a>
+			<h5>CLEAR</h5>
+		</div>
+	</div>				
+</div>
 """
