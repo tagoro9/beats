@@ -21,7 +21,7 @@ body {
 	margin-left: 0px;
 	border:1px solid black;
 	margin-top: 2px;
-	height: 150px;
+	height: 190px;
 	/*padding-top: 20px;*/
 }
 
@@ -160,20 +160,18 @@ filter: alpha(opacity=20);
 -khtml-opacity: 0.2;
 }
 
+
+#VolumeControl {
+  float:left;
+  width: 305px;
+}
+
 #TempoControl{
+	margin: 0 40px;
 	float: left;
 	height: auto;
 	width: 150px;
-	/*border:1px solid black;*/
 	text-align: center;
-	/*margin-top: 7px;*/
-	margin-left: 15px;
-}
-
-
-#TempoControl p{
-	margin-bottom: 1px;
-	font-weight: bold;
 }
 
 #TempoControl input{
@@ -186,18 +184,18 @@ filter: alpha(opacity=20);
 .up-tempo{
 	float: left;
 	font-size: 24px;
-	margin-top: 4px;
+	margin-top: 4px !important;
 	color: red;
-	margin-left: 5px;
+	margin-left: 5px !important;
 }
 
 .down-tempo{
 	float: left;
 	font-size: 24px;
 	color: red;
-	margin-right: 13px;
-	margin-top: 4px;
-	margin-left: 22px;
+	margin-right: 13px !important ;
+	margin-top: 4px !important;
+	margin-left: 22px !important;
 }
 
 /* Sound Bank */
@@ -212,6 +210,22 @@ filter: alpha(opacity=20);
 
 #Sounds ul {
 	list-style: none;
+	margin: 0 25px;
+}
+
+#FamiliesContainer, #SamplesContainer {
+	float:left;
+}
+
+.panelcontrol h4 {
+	text-align: center;
+    height: 20px;
+    font-weight: 600;
+    color: #3A87AD;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
 }
 
 #Families{
@@ -270,12 +284,19 @@ filter: alpha(opacity=20);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
+.panelcontrol a{
+	color: #3A87AD;
+}
+
+.panelcontrol a:hover, .panelcontrol a:active{
+	text-decoration: none;
+}
 
 #songControl{
 	float: right;
 	max-width: 25px;
 	background-color: #3A87AD;
-	height: 150px;
+	height: 190px;
 }
 
 #songControl a {

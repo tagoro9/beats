@@ -44,20 +44,29 @@ Templates.pattern_view = """
 <div class="span10 personalSpan12 panelcontrol">
 	
 	<div id="Sounds">
-		<div id="Families">
-		</div>
-		<div id="Samples">
-		</div>
+	    <div id="FamiliesContainer">
+	    	<h4>Family</h4>
+	    	<div id="Families">
+		    </div>
+	    </div>
+        <div id="SamplesContainer">
+        	<h4>Sample</h4>
+	    	<div id="Samples">
+		    </div>
+	    </div>
 	</div>
-
 	<div id="TempoControl">
-		<p>TEMPO</p>
+		<h4>Tempo</h4>
 		<a class="icon-minus tempo down-tempo" data-tempo="down" href="#"></a>
 		<div class="volume"><input type="text" value="100"></div>
 		<a class="icon-plus tempo up-tempo" data-tempo="up" href="#"></a>
 	</div>
-    <input type="range" id="generalVolume" min="0" max="100" step="1" value="80"/>
-    <span id="generalVolumeText">80</span>
+
+    <div id="VolumeControl">
+    	<h4>Volume</h4>
+    	<input type="range" id="generalVolume" min="0" max="100" step="1" value="80"/>
+        <span id="generalVolumeText">80</span>
+    </div>
     <div id="songControl">
     	<a id="play" class="icon-play-alt" href="#"></a>
     	<a class="icon-download-2" href="#"></a>
@@ -65,41 +74,5 @@ Templates.pattern_view = """
     </div>
 
 
-</div>
-<div class="span10 personalSpan12 panelcontrol">
-	<div class="GrupoCuadroM">
-		<div class="CuadroM">
-			<a id="stop" class="icon-stop" href="#"></a>
-			<h5>STOP</h5>
-		</div>
-		<div class="CuadroM">
-			<a id="play" class="icon-play-alt" href="#"></a>
-			<h5>PAUSE</h5>
-		</div>
-	</div>
-	<div class="GrupoCuadroM">
-		<div class="CuadroM">
-			<a class="icon-download-2" href="#"></a>
-			<h5>SAVE</h5>
-		</div>
-		<div class="CuadroM">
-			<a class="icon-upload-4" href="#"></a>
-			<h5>LOAD</h5>
-		</div>
-		<div class="CuadroM">
-			<a id="clear" class="icon-remove" href="#"></a>
-			<h5>CLEAR</h5>
-		</div>
-	</div>
-	<div class="GrupoCuadroM">		
-		<div class="CuadroM">
-			<a class="icon-volume-mute" href="#"></a>
-			<h5>CLEAR</h5>
-		</div>		
-		<div class="CuadroM">
-			<a class="icon-volume-2" href="#"></a>
-			<h5>CLEAR</h5>
-		</div>
-	</div>				
 </div>
 """
