@@ -81,8 +81,6 @@ class @PatternView extends Backbone.View
 
 		$('body').on 'click', ".Family", (e) ->
 			e.preventDefault()
-			#console.log($(this).href())
-			console.log($(this))
 			$.get "#{$(this).attr("href")}", (data) ->
 				#$('#Samples').remove()
 				text2 = '<ul>'
@@ -147,12 +145,10 @@ class @PatternView extends Backbone.View
 	clearMarkers: () ->
 		$(@el).find('#tempo').find('.Circulo').removeClass "tempo"
 	changeTempo: (e) ->
-		console.log "Cambiando tempoooooo"
 		@model.changeTempo $(e.target).data('tempo')
 		$(@el).find('#TempoControl').find('input').val @model.get("tempo")
 		@tempoTimer = setTimeout((() => @changeTempo(e)), 25)		
 	stopTempoChange: (e) ->
-		console.log "Pare de cambiar el tempo!!!"
 		clearTimeout @tempoTimer
 	drawMarker: (index) ->
 		lastIndex = (index + 15) % 16

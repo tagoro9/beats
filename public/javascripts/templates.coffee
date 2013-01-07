@@ -69,7 +69,7 @@ Templates.pattern_view = """
     </div>
     <div id="songControl">
     	<a id="play" class="icon-play-alt" href="#"></a>
-    	<a class="icon-download-2" href="#"></a>
+    	<a id="saveButton" class="icon-download-2" href="#"></a>
     	<a id="clear" class="icon-remove" href="#"></a>
     </div>
 
