@@ -7,11 +7,11 @@ Templates.track_view = """
 	<div class="CuadroI">
 		<h4 style="text-align: center"><%= name %></h4>
 		<div class= "elementoCuadro"> <a class="icon-volume-mute volume" data-volume="down" href="#"></a></div>
-		<div class="volume elementoCuadro"><input type="text" class="dataInput" value="100"></div>
+		<div class="volume elementoCuadro"><input type="text" class="dataInput" value="<%= volume %>"></div>
 		<div class= "elementoCuadro"><a class="icon-volume-2 volume" data-volume="up" href="#"></a></div>
 
-		<div class="mutesolo" data-action="mute">Mute</div>
-		<div class="mutesolo" data-action="solo">Solo</div>
+		<div class="mutesolo <%= mute %>" data-action="mute">Mute</div>
+		<div class="mutesolo <%= solo %>" data-action="solo">Solo</div>
 	</div>
 	<div class="beats"></div>
 </div>
@@ -58,7 +58,7 @@ Templates.pattern_view = """
 	<div id="TempoControl">
 		<h4>Tempo</h4>
 		<a class="icon-minus tempo down-tempo" data-tempo="down" href="#"></a>
-		<div class="volume"><input type="text" value="100"></div>
+		<div class="volume"><input id="tempoInput" type="text" value="100"></div>
 		<a class="icon-plus tempo up-tempo" data-tempo="up" href="#"></a>
 	</div>
 

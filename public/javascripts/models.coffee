@@ -2,10 +2,10 @@
 class @Beat extends Backbone.Model
 	defaults:
 		status: false
-	toggleStatus: () ->
+	toggleStatus: (doIt = true) ->
 		if @get("status") is false
 			@set "status": true
-			@.trigger 'playMe'	
+			@.trigger 'playMe'	if doIt
 		else
 			@set "status": false		
 
@@ -44,6 +44,10 @@ class @Track extends Backbone.Model
 	initialize: (options) ->
 		_(@get("beats_number")).times () =>
 			@get("beats").add(new Beat())
+	setBeats: (array) ->
+		console.log "Setting beats #{array}"
+		_(@get("beats_number")).times (i) =>
+			@get("beats").at(i).toggleStatus(false) if array[i] is 1
 	toggle: (attr) ->
 		if @get(attr)
 			@set attr,false
@@ -98,7 +102,26 @@ class @Pattern extends Backbone.Model
 		@set "player", new Player(@get("context"))
 		@get("context").createBufferSource()
 		@beatIndex = 0
-		@lastDrawTime = -1
+		@lastDrawTime = -1 
+		match = /.+\/(\d+)/.exec(window.location.pathname)
+		if match?
+			@set 'id', match[1]
+			#Need to load the song
+			$.get "/songs/#{@get 'id'}", @loadSong, 'json'
+	loadSong: (song) =>
+		console.log song
+		music = JSON.parse song['music']
+		#Set volume
+		@set 'masterGainNode', music['volume']
+		@.trigger 'updateVolume', music['volume']
+		#Set tempo
+		@set 'tempo', music['tempo']
+		@.trigger 'updateTempo',music['tempo']
+		#Set solos
+		@set 'solos', music['solos']
+		#Initialize tracks
+		for i in [1..music['tracks']] by 1
+			@addTrack music[i]['url'], music[i]['name'], music[i]
 	saveSong: () ->
 		song = {}
 		song['volume'] = @get 'masterGainNode'
@@ -128,9 +151,17 @@ class @Pattern extends Backbone.Model
 			  data: songInfo,
 			  success: (data) ->
 			    console.log data
-	addTrack: (url,name) ->
+	addTrack: (url,name, array = null) ->
 		@get("bufferLoader").loadUrl(url, (buffer) =>
-			@get("tracks").add new Track({url: url, buffer: buffer, name: name})
+			track = new Track({url: url, buffer: buffer, name: name})
+			@get("tracks").add track
+			if array?
+				console.log "Update track params"
+				track.set 'tempo', array['tempo'], {silent: true}
+				track.set 'volume', array['volume'], {silent: true}
+				track.set 'mute', array['mute'], {silent: true}
+				track.set 'solo', array['solo']
+				track.setBeats array['beats'] 			
 		)
 	newSolo: (id) =>
 		solo = @get 'solos'

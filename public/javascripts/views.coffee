@@ -21,12 +21,15 @@ class @TrackView extends Backbone.View
 		"mouseup .volume": "stopVolumeChange" #handle unpress on volume key (stop changing volume)
 		"click .mutesolo": "handleMuteSolo" #handle click on mute / solo control
 	initialize: () ->
+		@model.on 'change', @render
 		@beatsViews = [] #views for beats within the track
 		@model.get("beats").on 'playMe', () => @model.trigger('playMe',@model.cid) #play sound when a beat is set
 		@model.get("beats").forEach (beat) => #create all the beats views
 			@beatsViews.push new BeatView(model: beat)
 	render: () => #Render the track inside a div with row class
-		$(@el).html @template {name: @model.get("name")}
+		mute =  if @model.get('mute') then "active" else ""
+		solo = if @model.get('solo') then "active" else ""
+		$(@el).html @template {name: @model.get("name"), volume: @model.get('volume'), solo: solo, mute: mute}
 		@beatsViews.forEach (beat) =>
 			$(@el).find('.track-content').find('.beats').append beat.render() #append each beat view
 		return @
@@ -98,7 +101,14 @@ class @PatternView extends Backbone.View
 		@model.get("tracks").bind 'reset', @renderClear #handle clear all track on model
 		@model.get("tracks").bind 'playMe', @play #handle play on track
 		@model.bind 'updateMarker', @drawMarker #handle updateMarker event
+		@model.bind 'updateTempo', @updateTempo
+		@model.bind 'updateVolume', @updateVolume
 		@render()
+	updateTempo: (tempo) =>
+		$('#tempoInput').val tempo
+	updateVolume: (volume) =>
+		$('#generalVolumeText').html volume
+		$('#generalVolume').val volume
 	saveSong: () -> #save song to server
 		@model.saveSong()
 	play: (cid) => #start playing one track
