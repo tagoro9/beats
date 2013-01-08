@@ -90,6 +90,7 @@ class @Pattern extends Backbone.Model
 		tempo: 100
 		solos: 0 #Number of tracks solo
 		beats_number: 16
+		id: 0
 	initialize: () ->
 		@get('tracks').bind 'solo', @newSolo
 		@get('tracks').bind 'unsolo', @newUnSolo
@@ -108,7 +109,25 @@ class @Pattern extends Backbone.Model
 		track_number = 1
 		tracks.forEach (track) ->
 			song[track_number++] = track.toJSON()
-		console.log JSON.stringify(song)
+		songInfo = {song: {title: "Cancion subida", music: JSON.stringify(song)}}
+		#Send song to server if it doesn't exist
+		console.log "INside"
+		if @get('id') == 0
+			console.log "Saving song to server"
+			$.post("/songs", songInfo ,(data) =>
+				console.log data
+				@set 'id', data['success']
+				console.log @get 'id'
+			, 'json')
+		else
+			#Update song otherwise		
+			console.log "Updating song"
+			$.ajax
+			  url: "/songs/#{@get 'id'}",
+			  type: 'PUT',
+			  data: songInfo,
+			  success: (data) ->
+			    console.log data
 	addTrack: (url,name) ->
 		@get("bufferLoader").loadUrl(url, (buffer) =>
 			@get("tracks").add new Track({url: url, buffer: buffer, name: name})

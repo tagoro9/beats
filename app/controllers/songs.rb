@@ -16,6 +16,7 @@ Beats.controllers :songs do
 
   #Update a song
   put :update, :map => '/songs/:id', :provides => :json do 
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%% BEGINING"
     song = Song.find_by_id params[:id]
     if song
       params[:song].each { |key,val|
@@ -23,6 +24,7 @@ Beats.controllers :songs do
       }
       song.save
     end
+    JSON.generate(:success => song.id)    
   end
 
   #Get a song
@@ -33,13 +35,13 @@ Beats.controllers :songs do
 
   #Create new song
   post :create, :map => '/songs', :provides => :json do
-    Song.create! do |song|
+    newSong = Song.create! do |song|
       song.title = params[:song][:title]
       song.valoration = 0
       song.music = params[:song][:music]
       song.user_id = @current_user.id
     end
-    JSON.generate("success")
+    JSON.generate(:success => newSong.id)
   end
   
 end
