@@ -21,15 +21,22 @@ class @TrackView extends Backbone.View
 		"mouseup .volume": "stopVolumeChange" #handle unpress on volume key (stop changing volume)
 		"click .mutesolo": "handleMuteSolo" #handle click on mute / solo control
 	initialize: () ->
+		@model.on 'loaded', @updateTrack
 		@beatsViews = [] #views for beats within the track
 		@model.get("beats").on 'playMe', () => @model.trigger('playMe',@model.cid) #play sound when a beat is set
 		@model.get("beats").forEach (beat) => #create all the beats views
 			@beatsViews.push new BeatView(model: beat)
 	render: () => #Render the track inside a div with row class
-		$(@el).html @template {name: @model.get("name")}
+		mute =  if @model.get('mute') then "active" else ""
+		solo = if @model.get('solo') then "active" else ""
+		$(@el).html @template {name: @model.get("name"), volume: @model.get('volume'), solo: solo, mute: mute}
 		@beatsViews.forEach (beat) =>
 			$(@el).find('.track-content').find('.beats').append beat.render() #append each beat view
 		return @
+	updateTrack: (volume,mute,solo) =>
+		$(@el).find('.volume').find('input').val volume
+		$(@el).find('.mute').addClass 'active' if mute
+		$(@el).find('.solo').addClass 'active' if solo
 	setVolume: (e) -> #volume text input change
 		val = parseInt $(e.target).val()
 		if val >= 0 && val <= 100 #volume must be within [0..100]
@@ -46,7 +53,10 @@ class @TrackView extends Backbone.View
 				@model.toggle "mute"
 			when "solo"
 				@model.toggle "solo"
-				@model.trigger('solo',@model.cid) if $(e.target).hasClass("active")
+				if $(e.target).hasClass("active")
+					@model.trigger('solo',@model.cid) 
+				else
+					@model.trigger('unsolo',@model.cid)
 	changeVolume: (e) => #start changing volume
 		@model.changeVolume $(e.target).data('volume')
 		$(@el).find('.volume').find('input').val @model.get("volume") #update view with new value
@@ -58,13 +68,15 @@ class @PatternView extends Backbone.View
 	template: _.template Templates.pattern_view #template renderer
 	events:
 		#"click .add-track": "addTrack" #handle add track button
+		"click #saveButton": "saveSong" #event to send song to server
 		"click .del-track": "delTrack" #handle delete track button
 		"click #clear": "clearTracks" #handle clear button
 		"click #play": "handlePlay" #handle play button
 		"click #stop": "handleStop" #handle stop button
-		"mousedown .tempo": "changeTempo" #handle tempo key press
-		"mouseup .tempo": "stopTempoChange" #handle tempo key unpress
+		"mousedown a.tempo": "changeTempo" #handle tempo key press
+		"mouseup a.tempo": "stopTempoChange" #handle tempo key unpress
 		"change #TempoControl input": "setTempo" #handle tempo input change
+		"change #generalVolume": "handleGenVolumeChange" #Cahnge general volume slider
 	initialize: () ->
 		$.get '/sound/family', (data) ->
 			text1 = '<ul>'
@@ -76,8 +88,6 @@ class @PatternView extends Backbone.View
 
 		$('body').on 'click', ".Family", (e) ->
 			e.preventDefault()
-			#console.log($(this).href())
-			console.log($(this))
 			$.get "#{$(this).attr("href")}", (data) ->
 				#$('#Samples').remove()
 				text2 = '<ul>'
@@ -90,20 +100,21 @@ class @PatternView extends Backbone.View
 			e.preventDefault()
 			@addTrack $(e.target).data('url'), $(e.target).data('name')
 			return false;
-
-
-	#<div id="Sounds">
-	#	<div id="Samples">
-	#	</div>
-	#</div>
-		
-
 		@model.get("tracks").bind 'add', @renderAdded #handle new track added on model
 		@model.get("tracks").bind 'remove', @renderDel #handle last track removed on model
 		@model.get("tracks").bind 'reset', @renderClear #handle clear all track on model
 		@model.get("tracks").bind 'playMe', @play #handle play on track
 		@model.bind 'updateMarker', @drawMarker #handle updateMarker event
+		@model.bind 'updateTempo', @updateTempo
+		@model.bind 'updateVolume', @updateVolume
 		@render()
+	updateTempo: (tempo) =>
+		$('#tempoInput').val tempo
+	updateVolume: (volume) =>
+		$('#generalVolumeText').html volume
+		$('#generalVolume').val volume
+	saveSong: () -> #save song to server
+		@model.saveSong()
 	play: (cid) => #start playing one track
 		@model.playTrack(cid)	
 	render: () => #render pattern
@@ -114,6 +125,10 @@ class @PatternView extends Backbone.View
 		@model.addTrack(url,name)
 	delTrack: () => #delete track from model
 		@model.delTrack() if @model.tracksNumber() > 0
+	handleGenVolumeChange: (e) ->
+		volume = $(e.target).val()
+		$('#generalVolumeText').html(volume)
+		@model.changeVolume volume
 	handlePause: () ->
 		@model.stop()
 		@playing = false

@@ -1,4 +1,3 @@
-
 body {
 	background-color: #e9e9e9;
 }
@@ -19,12 +18,10 @@ body {
 
 .panelcontrol{
 	margin-left: 0px;
-	border:1px solid black;
 	margin-top: 2px;
-	height: 150px;
-	/*padding-top: 20px;*/
+	height: 190px;
+	background-color: #EEE;
 }
-
 
 .CuadroM{
 	float:left;
@@ -33,6 +30,7 @@ body {
 	margin-bottom: 25px;
 	margin-top: 25px;
 }
+
 .GrupoCuadroM{
 	float:left;
 	height: 200px;
@@ -40,6 +38,7 @@ body {
 	margin-right: 25px;
 	margin-left: 25px;
 }
+
 .CuadroI{
 	float:left;
 	height: auto;
@@ -97,9 +96,14 @@ body {
 
 /*Quitar las dos siguientes clases*/
 .borde{
-	-moz-box-shadow: 0 0 5px 5px #888;
-	-webkit-box-shadow: 0 0 5px 5px#888;
-	box-shadow: 0 0 5px 5px #888;
+	-moz-box-shadow: 1px 1px 5px 2px #888;
+	-webkit-box-shadow: 1px 1px 5px 2px #888;
+	box-shadow: 1px 1px 5px 2px #888;
+}
+
+.traks{
+	overflow: auto;
+	height: 40px;
 }
 	
 
@@ -160,20 +164,18 @@ filter: alpha(opacity=20);
 -khtml-opacity: 0.2;
 }
 
+
+#VolumeControl {
+  float:left;
+  width: 305px;
+}
+
 #TempoControl{
+	margin: 0 40px;
 	float: left;
 	height: auto;
 	width: 150px;
-	/*border:1px solid black;*/
 	text-align: center;
-	/*margin-top: 7px;*/
-	margin-left: 15px;
-}
-
-
-#TempoControl p{
-	margin-bottom: 1px;
-	font-weight: bold;
 }
 
 #TempoControl input{
@@ -186,18 +188,18 @@ filter: alpha(opacity=20);
 .up-tempo{
 	float: left;
 	font-size: 24px;
-	margin-top: 4px;
+	margin-top: 4px !important;
 	color: red;
-	margin-left: 5px;
+	margin-left: 5px !important;
 }
 
 .down-tempo{
 	float: left;
 	font-size: 24px;
 	color: red;
-	margin-right: 13px;
-	margin-top: 4px;
-	margin-left: 22px;
+	margin-right: 13px !important ;
+	margin-top: 4px !important;
+	margin-left: 22px !important;
 }
 
 /* Sound Bank */
@@ -212,6 +214,22 @@ filter: alpha(opacity=20);
 
 #Sounds ul {
 	list-style: none;
+	margin: 0 25px;
+}
+
+#FamiliesContainer, #SamplesContainer {
+	float:left;
+}
+
+.panelcontrol h4 {
+	text-align: center;
+    height: 20px;
+    font-weight: 600;
+    color: #3A87AD;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
 }
 
 #Families{
@@ -230,7 +248,7 @@ filter: alpha(opacity=20);
 	overflow-x:hidden;
 }
 
-#Families::-webkit-scrollbar {
+/*#Families::-webkit-scrollbar {
     width: 12px;
 }
  
@@ -241,6 +259,7 @@ filter: alpha(opacity=20);
 #Families::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
+*/
 
 
 #Samples{
@@ -258,6 +277,8 @@ filter: alpha(opacity=20);
 	overflow-x:hidden;
 }
 
+
+/*
 #Samples::-webkit-scrollbar {
     width: 12px;
 }
@@ -269,13 +290,39 @@ filter: alpha(opacity=20);
 #Samples::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
+*/
 
+.panelcontrol a{
+	color: #3A87AD;
+}
+
+.panelcontrol::-webkit-scrollbar {
+   background-color:#EFEFEF;
+   padding:0;
+}
+
+.panelcontrol::-webkit-scrollbar-thumb {
+background-color:#CDCDCD;
+
+}
+.panelcontrol::-webkit-scrollbar-thumb:hover {
+background-color:#A6A6A6;
+
+}
+.panelcontrol::-webkit-scrollbar-thumb:active {
+background-color:#606060;
+
+}
+
+.panelcontrol a:hover, .panelcontrol a:active{
+	text-decoration: none;
+}
 
 #songControl{
 	float: right;
 	max-width: 25px;
 	background-color: #3A87AD;
-	height: 150px;
+	height: 190px;
 }
 
 #songControl a {
@@ -287,3 +334,336 @@ filter: alpha(opacity=20);
 	float: right;
 }
 
+=======
+
+body {
+	background-color: #e9e9e9;
+}
+
+.container{
+	background-color: #fff;
+	width: 990px;
+	padding: 18px;
+}
+
+.personalSpan10{
+	height: 970px;
+}
+
+.personalSpan12{
+	height: 100px;
+}
+
+.panelcontrol{
+	margin-left: 0px;
+	margin-top: 2px;
+	height: 190px;
+	background-color: #EEE;
+}
+
+.CuadroM{
+	float:left;
+	height: 50px;
+	width: 50px;
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
+
+.GrupoCuadroM{
+	float:left;
+	height: 200px;
+	width: 200px;
+	margin-right: 25px;
+	margin-left: 25px;
+}
+
+.CuadroI{
+	float:left;
+	height: auto;
+	width: 81px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+
+.mutesolo{
+	float:left;
+	height: auto;
+	width: 37px;
+	border: 1px solid #c3c3c3;
+	text-align: center;
+	margin-right: 1px;
+	cursor: pointer;
+}
+
+.mutesolo.active {
+	background: #F00;
+}
+
+.elementoCuadro{
+	float: left;
+}
+
+.track-content {
+	max-width: 1008px;
+	border-bottom: 3px solid #c3c3c3;
+	margin-left: 16px;
+}
+
+.elementoCuadro input{
+	margin-left: 2px;
+	margin-right: 3px;
+	margin-bottom: 6px;
+}
+
+
+.elementoCuadro a{
+	margin-top: 5px;
+}
+
+
+.elementoCuadro input{
+	min-width: 1px;
+	width: 42px;
+
+
+}
+
+/*Quitar las dos siguientes clases*/
+.borde{
+	-moz-box-shadow: 1px 1px 5px 2px #888;
+	-webkit-box-shadow: 1px 1px 5px 2px #888;
+	box-shadow: 1px 1px 5px 2px #888;
+}
+	
+
+.Circulo{
+	float:left;
+	height: 30px;
+	width: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-top: 27px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+	border:solid;
+	cursor: pointer;
+}
+
+#tempo {
+	margin-left: -14px;
+}
+
+#tempo .Circulo {
+	float: left;
+	height: 9px;
+	width: 20px;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-bottom: 10px;
+	margin-top: 13px;
+
+/*	
+	float:left;
+	height: 12px;
+	width: 32px;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:solid;
+}
+
+.Circulo.tempo {
+	background: #0F0;
+}
+
+.Circulo.true {
+	background: #005580;
+}
+
+.rowdisable {
+opacity: 0.2;
+-moz-opacity: 0.2;
+filter: alpha(opacity=20);
+-khtml-opacity: 0.2;
+}
+
+
+#VolumeControl {
+  float:left;
+  width: 305px;
+}
+
+#TempoControl{
+	margin: 0 40px;
+	float: left;
+	height: auto;
+	width: 150px;
+	text-align: center;
+}
+
+#TempoControl input{
+	float: left;
+	text-align: center;
+	width: 45px;
+	min-width: 0px;
+}
+
+.up-tempo{
+	float: left;
+	font-size: 24px;
+	margin-top: 4px !important;
+	color: red;
+	margin-left: 5px !important;
+}
+
+.down-tempo{
+	float: left;
+	font-size: 24px;
+	color: red;
+	margin-right: 13px !important ;
+	margin-top: 4px !important;
+	margin-left: 22px !important;
+}
+
+/* Sound Bank */
+
+#Sounds{
+	float: left;
+	height: auto;
+	width: auto;
+	/*border:1px solid black;*/
+
+}
+
+#Sounds ul {
+	list-style: none;
+	margin: 0 25px;
+}
+
+#FamiliesContainer, #SamplesContainer {
+	float:left;
+}
+
+.panelcontrol h4 {
+	text-align: center;
+    height: 20px;
+    font-weight: 600;
+    color: #3A87AD;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+}
+
+#Families{
+	float: left;
+	width: 120px;
+	/*margin-top: 20px;*/
+	/*border: 1px solid black;*/
+	min-height: 150px;
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+
+#Families{
+	overflow:scroll;
+	overflow-x:hidden;
+}
+
+/*#Families::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#Families::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+#Families::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+*/
+
+
+#Samples{
+	min-height: 150px;
+	float: left;
+	width: 220px;
+	/*margin-top: 20px;*/
+	/*border: 1px solid black;*/
+	max-height: 150px;
+	overflow-y: auto;
+}
+
+#Samples{
+	overflow:scroll;
+	overflow-x:hidden;
+}
+
+
+/*
+#Samples::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#Samples::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+#Samples::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+*/
+
+.panelcontrol a{
+	color: #3A87AD;
+}
+
+.panelcontrol::-webkit-scrollbar {
+   background-color:#EFEFEF;
+   padding:0;
+}
+
+.panelcontrol::-webkit-scrollbar-thumb {
+background-color:#CDCDCD;
+
+}
+.panelcontrol::-webkit-scrollbar-thumb:hover {
+background-color:#A6A6A6;
+
+}
+.panelcontrol::-webkit-scrollbar-thumb:active {
+background-color:#606060;
+
+}
+
+.panelcontrol a:hover, .panelcontrol a:active{
+	text-decoration: none;
+}
+
+#songControl{
+	float: right;
+	max-width: 25px;
+	background-color: #3A87AD;
+	height: 190px;
+}
+
+#songControl a {
+   color : #FFFFFF;
+   margin: 6px !important;
+}
+
+#volume {
+	float: right;
+}

@@ -9,11 +9,13 @@
         .top-info-block
           %h3
             #{@current_user.name}
+          %h4 Home
         .top-info-block
-          %b.icon-user
+          %a.pull-left{:href => "/beats"}
+            %b.icon-music
       %hr.separator.pull-left
         %a#settings.pull-left{:href => "#"}
-          %b.icon-settings
+          %b.icon-exit
 .container.borde
   .containerUno
     %img.containerFoto{:src => "https://api.twitter.com/1/users/profile_image?screen_name=#{@current_user.email}&size=original"}
@@ -25,7 +27,7 @@
       - @current_user.songs.each do |song|
         .mediumListIconTextItem.AnchoItem
           .containerBotones
-            .containerIcon.btn.btn-success.playSong{'data-url' => "http://localhost:3000/beats/#{song.id}"}
+            .containerIcon.btn.btn-success.playSong{'data-url' => "/beats/#{song.id}"}
               .icon-play
             .containerIcon.btn.btn-twitter
               .icon-twitter-2{'data-url' => "https://twitter.com/intent/tweet?url=http://mybeats.herokuapp.com/beats/#{song.id}&text=Listen to my new song: #{song.title}&via=beatsstw"}
