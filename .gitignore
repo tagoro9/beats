@@ -1,9 +1,0 @@
-.DS_Store
-log/**/*
-tmp/**/*
-bin/*
-.project/*
-vendor/gems/*
-!vendor/gems/cache/
-.sass-cache/*
-project/*

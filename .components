@@ -1,8 +1,0 @@
----
-:orm: activerecord
-:test: rspec
-:mock: none
-:script: jquery
-:renderer: haml
-:stylesheet: none
-:admin_renderer: haml
