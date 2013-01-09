@@ -1,0 +1,27 @@
+%header#nav-bar.container-fluid
+  .row-fluid
+    .span8
+      #header-container
+        %a#backbutton.win-backbutton{:href => "#"}
+        %h3 BEATS
+    #top-info.pull-right
+      %a.pull-left{:href => "#"}
+        .top-info-block
+          %h3
+            #{@name}
+          %h4 Beats
+        .top-info-block
+          - if @loggedIn
+            %a#settings.pull-left{:href => "/home"}        
+              %b.icon-home
+          - else
+            %a#settings.pull-left{:href => "#"}        
+              %b.icon-user          
+      %hr.separator.pull-left
+        - if @loggedIn
+          %a#settings.pull-left{:href => "/logout"}
+            %b.icon-exit
+        - else
+          %a#settings.pull-left{:href => "/auth/twitter"}
+            %b.icon-twitter-2
+#beats.container.borde
