@@ -63,7 +63,9 @@ class Beats < Padrino::Application
   #   end
   #
 
-  get '/beats' do
+  get '/beats(/:id)' do
+    @name = signed_in? ? @current_user.name : "Guest"
+    @loggedIn = !@current_user.nil?
     render 'index'
   end
 
