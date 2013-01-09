@@ -5,6 +5,7 @@
     = stylesheet_link_tag 'bootmetro/css/bootmetro-tiles', 'bootmetro/css/bootmetro-charms'
     = stylesheet_link_tag 'bootmetro/css/metro-ui-light', 'bootmetro/css/icomoon'
     = stylesheet_link_tag 'bootmetro/css/datepicker', 'bootmetro/css/daterangepicker', 'application', 'login', 'home'
+    = stylesheet_link_tag 'jquery.pnotify.default', 'jquery.pnotify.default.icons'
 
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", :type => "text/javascript"}
     = javascript_include_tag 'underscore'
@@ -14,6 +15,7 @@
     = javascript_include_tag 'models'
     = javascript_include_tag 'views'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'jquery.pnotify.min'
     
   %body
     = yield

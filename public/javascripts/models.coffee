@@ -122,8 +122,8 @@ class @Pattern extends Backbone.Model
 		#Initialize tracks
 		for i in [1..music['tracks']] by 1
 			@addTrack music[i]['url'], music[i]['name'], music[i]
-	notify: (title, message) ->
-		$.pnotify { title: title, text: message, pnotify_history: false}
+	notify: (title, message, type) ->
+		$.pnotify { title: title, text: message, pnotify_history: false, pnotify_type: type}
 	saveSong: () ->
 		song = {}
 		song['volume'] = @get 'masterGainNode'
@@ -144,9 +144,10 @@ class @Pattern extends Backbone.Model
 				if data['success']?
 					@set 'id', data['success']
 					console.log @get 'id'
+					@notify "Success", "The song was created", 'info'
 				else if data['error']?
 					console.log data['error']
-					@notify "Warning", data['error']
+					@notify "Warning", data['error'], 'error'
 			, 'json')
 		else
 			#Update song otherwise		
@@ -157,9 +158,11 @@ class @Pattern extends Backbone.Model
 			  data: songInfo,
 			  success: (data) =>
 			    console.log data
-			    if data['error']?
+			    if data['success']?
+			    	@notify "Success", "The song was updated", 'info'
+			    else if data['error']?
 			    	console.log data['error']
-			    	@notify "Warning", data['error']
+			    	@notify "Warning", data['error'], 'error'
 	addTrack: (url,name, array = null) ->
 		@get("bufferLoader").loadUrl(url, (buffer) =>
 			track = new Track({url: url, buffer: buffer, name: name})
