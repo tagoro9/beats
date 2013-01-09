@@ -123,7 +123,7 @@ class @Pattern extends Backbone.Model
 		for i in [1..music['tracks']] by 1
 			@addTrack music[i]['url'], music[i]['name'], music[i]
 	notify: (title, message, type) ->
-		$.pnotify { title: title, text: message, pnotify_history: false, pnotify_type: type}
+		$.pnotify { title: title, text: "<p>#{message}</p>", pnotify_history: false, pnotify_type: type}
 	saveSong: () ->
 		song = {}
 		song['volume'] = @get 'masterGainNode'
