@@ -161,7 +161,7 @@ class @Pattern extends Backbone.Model
 				track.set 'mute', array['mute'], {silent: true}
 				track.set 'solo', array['solo'], {silent: true}
 				track.setBeats array['beats']
-				track.trigger 'updateTrack', array['volume'], array['mute'], array['solo']
+				track.trigger 'loaded', array['volume'], array['mute'], array['solo']
 		)
 	newSolo: (id) =>
 		solo = @get 'solos'
