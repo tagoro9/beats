@@ -101,6 +101,11 @@ body {
 	-webkit-box-shadow: 1px 1px 5px 2px #888;
 	box-shadow: 1px 1px 5px 2px #888;
 }
+
+.traks{
+	overflow: auto;
+	height: 40px;
+}
 	
 
 .Circulo{
