@@ -69,6 +69,7 @@ class @PatternView extends Backbone.View
 	template: _.template Templates.pattern_view #template renderer
 	events:
 		#"click .add-track": "addTrack" #handle add track button
+		"click #value": "likeSong" #Rate a song
 		"click #saveButton": "askSongName" #event to send song to server
 		"click .del-track": "delTrack" #handle delete track button
 		"click #clear": "clearTracks" #handle clear button
@@ -113,6 +114,9 @@ class @PatternView extends Backbone.View
 		@model.bind 'updateVolume', @updateVolume
 		@model.bind 'notify', @notify
 		@render()
+	likeSong: () ->
+		console.log "I like that song"
+		@model.likeSong()
 	notify: (title, message, type) ->
 		$.pnotify { title: title, text: message, pnotify_history: false, pnotify_type: type, styling: 'jqueryui'}
 	updateTempo: (tempo) =>

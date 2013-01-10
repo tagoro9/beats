@@ -110,6 +110,10 @@ class @Pattern extends Backbone.Model
 			#Need to load the song
 			$.get "/songs/#{@get 'id'}", @loadSong, 'json'
 	loadSong: (song) =>
+		$.get '/user', (data) =>
+			console.log data
+			if data.id != @get('id')
+				$('#songControl').append('<a id="value" class=" icon-checkmark-2" title="like song" href="#"></a>')
 		console.log song
 		music = JSON.parse song['music']
 		#Set volume
@@ -123,6 +127,9 @@ class @Pattern extends Backbone.Model
 		#Initialize tracks
 		for i in [1..music['tracks']] by 1
 			@addTrack music[i]['url'], music[i]['name'], music[i]
+	likeSong: () ->
+		$.get "/songs/like/#{@get('id')}", () =>
+			@trigger 'notify', "Info", "The song has been rated", "info"
 	saveSong: () ->
 		song = {}
 		song['volume'] = @get 'masterGainNode'

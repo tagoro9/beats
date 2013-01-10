@@ -26,6 +26,22 @@ Beats.controllers :songs do
     end
   end
 
+
+  get :valorate, :map => '/songs/like/:id' do
+    song = song = Song.find_by_id(params[:id])
+    song.valoration = song.valoration + 1
+    song.save
+    "Rated"
+  end
+
+  get :user, :map => '/user' do
+    if signed_in?
+      "#{@current_user.id}"
+    else
+      "0"
+    end
+  end
+
   #Get a song
   get :get, :map => '/songs/:id', :provides => :json do
     song = Song.find_by_id(params[:id]).as_json

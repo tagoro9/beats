@@ -65,9 +65,9 @@ Templates.pattern_view = """
         <span id="generalVolumeText">80</span>
     </div>
     <div id="songControl">
-    	<a id="play" class="icon-play-alt" href="#"></a>
-    	<a id="saveButton" class="icon-download-2" href="#"></a>
-    	<a id="clear" class="icon-remove" href="#"></a>
+    	<a id="play" class="icon-play-alt" title="play song" href="#"></a>
+    	<a id="saveButton" class="icon-download-2" title="save song" href="#"></a>
+    	<a id="clear" class="icon-remove" title="clear tracks" href="#"></a>
     </div>
 
 
