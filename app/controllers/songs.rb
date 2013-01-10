@@ -13,7 +13,7 @@ Beats.controllers :songs do
   #Update a song
   put :update, :map => '/songs/:id', :provides => :json do 
     song = Song.find_by_id params[:id]
-    if signed_in? && @current_user.id = song.user_id
+    if signed_in? && @current_user.id == song.user_id
       if song
         params[:song].each { |key,val|
           song[key] = val

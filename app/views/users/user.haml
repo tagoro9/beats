@@ -21,6 +21,10 @@
     %img.containerFoto{:src => "https://api.twitter.com/1/users/profile_image?screen_name=#{@current_user.email}&size=original"}
     %h2.AlineadoBlack
       #{@current_user.name}
+    %h3
+      %a{:href => "/beats"}
+        %i.icon-music
+        Create a song
   .containerDos
     %h2.label-info.Alineado My Beats
     #listview.grid-layout.Alto    
@@ -38,10 +42,10 @@
       - @songs.each do |song|    
         .mediumListIconTextItem.AnchoItem1
           .containerBotones1
-            .containerIcon1.btn.btn-success
+            .containerIcon1.btn.btn-success.playSong{'data-url' => "/beats/#{song.id}"}
               .icon-play
             .containerIcon1.btn.btn-twitter
-              .icon-twitter-2
+              .icon-twitter-2{'data-url' => "https://twitter.com/intent/tweet?url=http://mybeats.herokuapp.com/beats/#{song.id}&text=Listen to this great song: #{song.title}&via=beatsstw"}
           .titulo
             %p #{song.title}
           .titulo
