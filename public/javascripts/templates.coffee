@@ -3,10 +3,10 @@ Templates.beat_view = """
 <div class="Circulo <%= status %>"></div>
 """
 Templates.track_view = """
-<div class="span12 personalSpan12 track-content">
+<div class="	personalSpan12 track-content">
 	<h4 style="text-align: center"><%= name %></h4>	
 	<div class="CuadroI">
-		<h4 style="text-align: center">Volume</h4>
+		<h4 style="text-align: center;margin-left: -10px;">Volume</h4>
 		<div class= "elementoCuadro"> <a class="icon-volume-mute volume" data-volume="down" href="#"></a></div>
 		<div class="volume elementoCuadro"><input type="text" class="dataInput" value="100"></div>
 		<div class= "elementoCuadro"><a class="icon-volume-2 volume" data-volume="up" href="#"></a></div>
