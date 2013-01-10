@@ -19,7 +19,7 @@ body {
 .panelcontrol{
 	margin-left: 0px;
 	margin-top: 2px;
-	height: 190px;
+	height: 110px;
 	background-color: #EEE;
 }
 
@@ -206,7 +206,7 @@ filter: alpha(opacity=20);
 
 #Sounds{
 	float: left;
-	height: auto;
+	height: 110px;
 	width: auto;
 	/*border:1px solid black;*/
 
@@ -263,12 +263,12 @@ filter: alpha(opacity=20);
 
 
 #Samples{
-	min-height: 150px;
+	min-height: 69px;
 	float: left;
 	width: 220px;
 	/*margin-top: 20px;*/
 	/*border: 1px solid black;*/
-	max-height: 150px;
+	max-height: 69px;
 	overflow-y: auto;
 }
 
@@ -322,7 +322,7 @@ background-color:#606060;
 	float: right;
 	max-width: 25px;
 	background-color: #3A87AD;
-	height: 190px;
+	height: 110px;
 }
 
 #songControl a {
