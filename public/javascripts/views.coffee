@@ -69,7 +69,7 @@ class @PatternView extends Backbone.View
 	template: _.template Templates.pattern_view #template renderer
 	events:
 		#"click .add-track": "addTrack" #handle add track button
-		"click #saveButton": "saveSong" #event to send song to server
+		"click #saveButton": "askSongName" #event to send song to server
 		"click .del-track": "delTrack" #handle delete track button
 		"click #clear": "clearTracks" #handle clear button
 		"click #play": "handlePlay" #handle play button
@@ -97,10 +97,13 @@ class @PatternView extends Backbone.View
 				text2 = text2 + '</ul>'
 				$('#Samples').html(text2)
 
+
 		$('body').on 'click', '.sampleLink', (e) =>
 			e.preventDefault()
 			@addTrack $(e.target).data('url'), $(e.target).data('name')
 			return false;
+
+		$('body').on 'click', '#saveSong', @saveSong
 		@model.get("tracks").bind 'add', @renderAdded #handle new track added on model
 		@model.get("tracks").bind 'remove', @renderDel #handle last track removed on model
 		@model.get("tracks").bind 'reset', @renderClear #handle clear all track on model
@@ -117,7 +120,19 @@ class @PatternView extends Backbone.View
 	updateVolume: (volume) =>
 		$('#generalVolumeText').html volume
 		$('#generalVolume').val volume
-	saveSong: () -> #save song to server
+	askSongName: () ->
+		#Ask the user for a name to the song
+		html = """
+			<div id="#titleDialog" title="Name your beat!">
+				<input id="songName" name="title" type="text" value="#{@model.get('title')}" placeholder="name..."/>
+				<input type="button" value="Save" id="saveSong"/>
+			</div>
+		"""
+		$(html).dialog({modal: true})		
+	saveSong: (e) => #save song to server
+		title = $('#songName').val()
+		@model.set 'title', title
+		$(".ui-dialog-content").dialog("close");
 		@model.saveSong()
 	play: (cid) => #start playing one track
 		@model.playTrack(cid)	

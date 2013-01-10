@@ -88,6 +88,15 @@ body {
 	text-align: center;
 }
 
+#songName {
+	padding: 10px;
+	margin: 20px;
+}
+
+#saveSong {
+	float: right;
+}
+
 .trackName a{
 	float: right;
 }
