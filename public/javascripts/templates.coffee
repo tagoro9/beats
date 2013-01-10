@@ -20,10 +20,6 @@ Templates.track_view = """
 Templates.pattern_view = """
 <div class="tracks"></div>
 <div id="tempo" class="span12 personalSpan12">
-	<div class="CuadroI">
-		<a class="icon-plus add-track" href="#"></a>
-		<a class="icon-minus del-track" href="#"></a>
-	</div>
 	<div id="tempo-0" class="Circulo "></div>
 	<div id="tempo-1" class="Circulo "></div>
 	<div id="tempo-2" class="Circulo "></div>
