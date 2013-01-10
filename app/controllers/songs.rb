@@ -34,9 +34,10 @@ Beats.controllers :songs do
     "Rated"
   end
 
-  get :user, :map => '/user' do
-    if signed_in?
-      "#{@current_user.id}"
+  get :user, :map => '/user/:id' do
+    song = song = Song.find_by_id(params[:id])
+    if signed_in? && @current_user.id == song.user_id
+      "1"
     else
       "0"
     end

@@ -110,9 +110,9 @@ class @Pattern extends Backbone.Model
 			#Need to load the song
 			$.get "/songs/#{@get 'id'}", @loadSong, 'json'
 	loadSong: (song) =>
-		$.get '/user', (data) =>
+		$.get "/user/#{@get('id')}", (data) =>
 			console.log data
-			if data.id != @get('id')
+			if parseInt(data) == 0
 				$('#songControl').append('<a id="value" class=" icon-checkmark-2" title="like song" href="#"></a>')
 		console.log song
 		music = JSON.parse song['music']
