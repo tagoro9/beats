@@ -62,7 +62,7 @@ body {
 }
 
 .mutesolo.active {
-	background: #F00;
+	background: #FF8500;
 }
 
 .elementoCuadro{
@@ -126,7 +126,7 @@ body {
 }
 
 #tempo {
-	margin-left: 86px;
+	margin-left: 117px;
 	margin-bottom: 14px;
 }
 
@@ -161,6 +161,10 @@ body {
 
 .Circulo.true {
 	background: #005580;
+}
+
+.row{
+	margin-left: 0px;
 }
 
 .rowdisable {
@@ -338,4 +342,23 @@ background-color:#606060;
 
 #volume {
 	float: right;
+}
+
+
+@media screen and (max-height: 1080px) {
+	.tracks{
+		overflow-x: hidden;
+		overflow-y: auto;
+		height: 210px;
+	}
+}
+
+
+@media screen and (min-height: 1080px) {
+	.tracks{
+		overflow-x: hidden;
+		overflow-y: auto;
+		height: 412px;
+	}
+
 }

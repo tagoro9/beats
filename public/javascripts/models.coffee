@@ -90,6 +90,7 @@ class @Pattern extends Backbone.Model
 		convolver: null
 		compressor: null
 		masterGainNode: 80
+		title: "No title"
 		effectLevelNode: null
 		tempo: 100
 		solos: 0 #Number of tracks solo
@@ -122,8 +123,6 @@ class @Pattern extends Backbone.Model
 		#Initialize tracks
 		for i in [1..music['tracks']] by 1
 			@addTrack music[i]['url'], music[i]['name'], music[i]
-	notify: (title, message, type) ->
-		$.pnotify { title: title, text: message, pnotify_history: false, pnotify_type: type, styling: 'jqueryui'}
 	saveSong: () ->
 		song = {}
 		song['volume'] = @get 'masterGainNode'
@@ -134,7 +133,7 @@ class @Pattern extends Backbone.Model
 		track_number = 1
 		tracks.forEach (track) ->
 			song[track_number++] = track.toJSON()
-		songInfo = {song: {title: "Cancion subida", music: JSON.stringify(song)}}
+		songInfo = {song: {title: @get('title'), music: JSON.stringify(song)}}
 		#Send song to server if it doesn't exist
 		console.log "INside"
 		if @get('id') == 0
@@ -144,10 +143,10 @@ class @Pattern extends Backbone.Model
 				if data['success']?
 					@set 'id', data['success']
 					console.log @get 'id'
-					@notify "Success", "The song was created", 'info'
+					@trigger 'notify', "Success", "The song was created", 'info'
 				else if data['error']?
 					console.log data['error']
-					@notify "Warning", data['error'], 'error'
+					@trigger 'notify', "Warning", data['error'], 'error'
 			, 'json')
 		else
 			#Update song otherwise		
@@ -159,10 +158,10 @@ class @Pattern extends Backbone.Model
 			  success: (data) =>
 			    console.log data
 			    if data['success']?
-			    	@notify "Success", "The song was updated", 'info'
+			    	@trigger 'notify', "Success", "The song was updated", 'info'
 			    else if data['error']?
 			    	console.log data['error']
-			    	@notify "Warning", data['error'], 'error'
+			    	@trigger 'notify', "Warning", data['error'], 'error'
 	addTrack: (url,name, array = null) ->
 		@get("bufferLoader").loadUrl(url, (buffer) =>
 			track = new Track({url: url, buffer: buffer, name: name})

@@ -107,7 +107,10 @@ class @PatternView extends Backbone.View
 		@model.bind 'updateMarker', @drawMarker #handle updateMarker event
 		@model.bind 'updateTempo', @updateTempo
 		@model.bind 'updateVolume', @updateVolume
+		@model.bind 'notify', @notify
 		@render()
+	notify: (title, message, type) ->
+		$.pnotify { title: title, text: message, pnotify_history: false, pnotify_type: type, styling: 'jqueryui'}
 	updateTempo: (tempo) =>
 		$('#tempoInput').val tempo
 	updateVolume: (volume) =>
