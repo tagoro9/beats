@@ -182,8 +182,10 @@ class @Pattern extends Backbone.Model
 		@set 'solos', --solo		
 	clearTracks: () ->
 		@get("tracks").reset()
-	delTrack: () ->
-		@get("tracks").pop()
+	delTrack: (cid) ->
+		console.log "Removing #{cid}"
+		track = @get('tracks').get(cid)
+		@get("tracks").remove(track)
 	tracksNumber: () ->
 		@get("tracks").length
 	playTrack: (cid) ->

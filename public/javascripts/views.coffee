@@ -29,7 +29,8 @@ class @TrackView extends Backbone.View
 	render: () => #Render the track inside a div with row class
 		mute =  if @model.get('mute') then "active" else ""
 		solo = if @model.get('solo') then "active" else ""
-		$(@el).html @template {name: @model.get("name"), volume: @model.get('volume'), solo: solo, mute: mute}
+		cid = @model.cid
+		$(@el).html @template {name: @model.get("name"), volume: @model.get('volume'), solo: solo, mute: mute, cid: cid}
 		@beatsViews.forEach (beat) =>
 			$(@el).find('.track-content').find('.beats').append beat.render() #append each beat view
 		return @
@@ -126,8 +127,10 @@ class @PatternView extends Backbone.View
 		@model.clearTracks() if @model.tracksNumber() > 0
 	addTrack: (url,name) => #add new track to model
 		@model.addTrack(url,name)
-	delTrack: () => #delete track from model
-		@model.delTrack() if @model.tracksNumber() > 0
+	delTrack: (e) -> #delete track from model
+		e.preventDefault()
+		console.log $(e.target).html()
+		@model.delTrack($(e.target).data('cid')) if @model.tracksNumber() > 0
 	handleGenVolumeChange: (e) ->
 		volume = $(e.target).val()
 		$('#generalVolumeText').html(volume)
@@ -174,7 +177,7 @@ class @PatternView extends Backbone.View
 	renderClear: () =>
 		$(@el).find('.tracks').empty()
 	renderDel: (track) =>
-		target = $(@el).find('.tracks').children().last()
+		target = $(@el).find("##{track.cid}").parent()
 		$(target).slideUp('slow',() => $(target).remove())
 	renderAdded: (track) =>
-		$(new TrackView(model: track).render().el).hide().appendTo($(@el).find('.tracks')).slideDown('slow')
+		$(new TrackView(model: track).render().el).appendTo($(@el).find('.tracks'))

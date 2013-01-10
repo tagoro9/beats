@@ -79,6 +79,19 @@ body {
 	margin-left: 16px;
 }
 
+.trackTitle {
+	 text-align: center;
+	 margin-left: -10px;
+}
+
+.trackName {
+	text-align: center;
+}
+
+.trackName a{
+	float: right;
+}
+
 .elementoCuadro input{
 	margin-left: 2px;
 	margin-right: 3px;
